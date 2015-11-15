@@ -4,6 +4,8 @@
 
 Ce dépot contient des supports de formation accompagnant des formations AngularJS. Ils doivent être accompagnée d'une présentation et de commentaires de la part d'un encadrant.
 
+La présentation associée est hébergée sur [toubiweb.github.io/angular-training-presentation](http://toubiweb.github.io/angular-training-presentation)
+
 ## Ressources
 
 Ressources Angular: 
