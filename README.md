@@ -15,14 +15,18 @@ Autres ressources:
 * [Librairies externes](00.3rdparty-libraries.documentation/00.3rdparty-libraries.documentation-fr.md): moment.js, bootstrap...
 * [Outils de développement](00.dev-tools.documentation/00.dev-tools.documentation-fr.md): npm, bower, gulp, yeoman...
 
-## Téléchargement en PDF
+## Téléchargement en PDF / HTML
 
-L'export PDF de la documentation peut être téléchargée depuis le dossier /pdf:
+L'export PDF de la documentation peut être téléchargé depuis le dossier /exports/pdf:
 
-* [01.angular-bases.documentation.pdf](../../raw/master/pdf/01.angular-bases.documentation.pdf)
-* [02.angular-intermediate.documentation.pdf](../../raw/master/pdf/02.angular-intermediate.documentation.pdf)
-* [00.dev-tools.documentation.pdf](../../raw/master/pdf/00.dev-tools.documentation.pdf)
-* [00.3rdparty-libraries.documentation.pdf](../../raw/master/pdf/00.3rdparty-libraries.documentation.pdf)
+* [/exports/pdf/01.angular-bases.documentation.pdf](../../raw/master/exports/pdf/01.angular-bases.documentation.pdf)
+* [/exports/pdf/02.angular-intermediate.documentation.pdf](../../raw/master/exports/pdf/02.angular-intermediate.documentation.pdf)
+* [/exports/pdf/00.dev-tools.documentation.pdf](../../raw/master/exports/pdf/00.dev-tools.documentation.pdf)
+* [/exports/pdf/00.3rdparty-libraries.documentation.pdf](../../raw/master/exports/pdf/00.3rdparty-libraries.documentation.pdf)
+
+L'export HTML de la documentation peut être téléchargé au format zip:
+
+* [/exports/html.zip](../../raw/master/exports/html.zip)
 
 ## Auteur
 
@@ -44,16 +48,20 @@ L'auteur ne garantie pas la qualité des informations: utilisez-les à vos propr
 
 N'hésitez pas à soumettre des bugs et contributions.
 
-## Conversion en PDF depuis les sources
+## Conversion en PDF et HTML depuis les sources (sous Linux Debian)
 
-Pour convertir la documentation en PDF, il est possible d'utiliser pandoc.
+Pour convertir la documentation en PDF et HTML, il est possible d'utiliser pandoc.
 
 Limitation: les liens relatifs seront cassés.
 
-### Installation sous Debian Linux
+### Installation
 
-    apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetext
+    apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetext zip
 
 ### Exportation en PDF
 
     ./export-pdf.sh
+
+### Exportation en HTML
+
+    ./export-html.sh

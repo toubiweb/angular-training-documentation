@@ -1,0 +1,669 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<h1 id="pour-aller-plus-loin-avec-angular-1.4">Pour aller plus loin avec Angular 1.4</h1>
+<ul>
+<li>Accueil: <a href="../README.md">Documentation support de formation</a></li>
+<li>Chapitre précédent: <a href="../01.angular-bases.documentation/01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4 (niveau débutant)</a></li>
+</ul>
+<h2 id="pré-requis-niveau-intermédiaire">Pré-requis (niveau intermédiaire)</h2>
+<p>Cette formation est destinée à un public connaissant déjà les bases d'angular et l'ayant pratiqué sur un ou plusieurs projets.</p>
+<p>Les pré-requis sont les sujets abordés dans le document &quot;<a href="../01.angular-bases.documentation/01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a>&quot;.</p>
+<h2 id="sommaire">Sommaire</h2>
+<ul>
+<li><a href="02.01.data.cache-fr.md">Les caches de données</a></li>
+<li><a href="02.02.js-data-fr.md">JS Data</a></li>
+<li><a href="02.03.security-fr.md">Sécurité</a></li>
+<li><a href="02.04.i18n-l9n-fr.md">Internationalisation et localisation</a></li>
+<li><a href="02.05.non-ng-libs.service-fr.md">Interractions avec des bibliothèques non-angular - services</a></li>
+<li><a href="02.06.non-ng-libs.directive-fr.md">Interractions avec des bibliothèques non-angular - directives</a></li>
+<li><a href="02.07.d3-fr.md">D3 - data-driven documents</a></li>
+<li><a href="02.08.leaflet-fr.md">Web mapping avec leaflet</a></li>
+<li><p><a href="02.09.json-patch-fr.md">JSON Patch</a> ## Les caches de données</p></li>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li><p>Page suivante: <a href="02.02.js-data-fr.md">JS Data</a></p></li>
+</ul>
+<h3 id="cache-par-défaut-ng-cache">Cache par défaut (ng-cache)</h3>
+<p>Angular fourni un cache par défaut: ng-cache.</p>
+<p>Création du cache:</p>
+<pre class="js"><code>var cache = $cacheFactory(&#39;users.resources&#39;);</code></pre>
+<p>Ajout d'un élément du cache:</p>
+<pre class="js"><code>cache.put(&#39;user.1&#39;, user1);</code></pre>
+<p>Lecture d'un élément du cache:</p>
+<pre class="js"><code>var user1 =  cache.get(&#39;user.1&#39;);</code></pre>
+<p>Limitations: * pas de méthode pour itérer sur tous les éléments du cache * pas de mécanisme d'expiration * cache mémoire, pas d'extension au localStorage ou sessionStorage</p>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://docs.angularjs.org/api/ng/type/$cacheFactory.Cache">$cacheFactory</a></li>
+</ul>
+<h3 id="cache-alternatif-angular-cache">Cache alternatif: angular-cache</h3>
+<p>Cache avancé permettant de palier aux limitations de $cacheFactory: * itération sur tous les éléments du cache * mécanisme d'expiration configurable * cache mémoire, localStorage ou sessionStorage</p>
+<p>Installation via bower:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">bower</span> install --save angular-cache</code></pre>
+<p>Ajout du module à l'application:</p>
+<pre class="js"><code>angular.module(&#39;myApp&#39;, [&#39;angular-cache&#39;])</code></pre>
+<p>Création et configuration du cache avec local storage:</p>
+<pre class="js"><code>var cache = CacheFactory(&#39;users.resources&#39;, {
+    storageMode: &#39;localStorage&#39;
+});</code></pre>
+<p>Ajout d'un élément du cache:</p>
+<pre class="js"><code>cache.put(&#39;user.1&#39;, user1);</code></pre>
+<p>Lecture d'un élément du cache:</p>
+<pre class="js"><code>var user1 =  cache.get(&#39;user.1&#39;);</code></pre>
+<p>Lecture de tous les éléments du cache:</p>
+<pre class="js"><code>var users = cache.keys().reduce(function (values, key) {
+    values.push(cache.get(key));
+    return values;
+}, []);</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://github.com/jmdobry/angular-cache">angular-cache</a></li>
+</ul>
+<h2 id="js-data-respectez-vos-données">JS data: respectez vos données</h2>
+<ul>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li>Page précédente: <a href="02.01.data.cache-fr.md">Les caches de données</a></li>
+<li>Page suivante: <a href="02.03.security-fr.md">Sécurité</a></li>
+</ul>
+<h3 id="introduction">Introduction</h3>
+<p>Librairie de gestion des données, indépendante de tout framework, fonctionnant avec nodejs, angularjs, ou n'importe quelle application javascript.</p>
+<p>Par défaut, toutes les données sont stockées dans un cache mémoire. L'auteur, Jason Dobry, est aussi le créateur de CacheFactory.</p>
+<p>Installation via bower:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">bower</span> install --save js-data-angular js-data</code></pre>
+<p>Ajout du module à l'application:</p>
+<pre class="js"><code>angular.module(&#39;myApp&#39;, [&#39;js-data&#39;])</code></pre>
+<p>Configuration du module</p>
+<pre class="js"><code>    angular.module(&#39;tw.practice&#39;).config(configureModule);
+
+    angular.module(&#39;tw.practice&#39;).run(runModule);
+
+    /** @ngInject */
+    function configureModule(DSProvider, DSHttpAdapterProvider) {
+
+        DSProvider.defaults.basePath = &#39;/api&#39;;
+        DSProvider.defaults.idAttribute = &#39;_id&#39;;
+    }
+
+    /** @ngInject */
+    function runModule(DS) {
+
+        var UserResource = DS.defineResource({
+            name: &#39;users&#39;
+        });
+
+    }</code></pre>
+<p>Contournement du cache ajax de IE10 via l'ajout d'un timestamp dans chaque requête:</p>
+<pre class="js"><code>    /** @ngInject */
+    function configureModule(DSProvider, DSHttpAdapterProvider) {
+
+        DSProvider.defaults.basePath = &#39;/api&#39;;
+        DSProvider.defaults.idAttribute = &#39;_id&#39;;
+
+        DSHttpAdapterProvider.defaults.queryTransform = function (resource, params) {
+            // disable ie10 cache
+            params.nocache = new Date().getTime();
+            return params;
+        };
+
+    }</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="http://www.js-data.io">js-data</a></li>
+<li><a href="http://www.js-data.io/v2.8/docs/dsdefaults">DataStore configuration</a></li>
+</ul>
+<h3 id="opérations-de-base">Opérations de base</h3>
+<pre class="js"><code>function findAll(params) {
+            
+    return DS.findAll(&#39;users&#39;, params);
+}
+
+function findOne(userId) {
+
+    return DS.find(&#39;users&#39;, userId);
+}
+
+function createOne(user) {
+
+    return DS.create(&#39;users&#39;, user);
+}
+
+function updateOne(user) {
+
+    return DS.update(&#39;users&#39;, user);
+}
+
+function removeOne(userId) {
+
+     return DS.destroy(&#39;users&#39;, userId);
+}</code></pre>
+<p>Il est possible de bypasser le cache sur une requête particulière:</p>
+<pre class="js"><code>function findAll(params) {
+            
+    return DS.findAll(&#39;users&#39;, params, { bypassCache: true });
+}
+
+function findOne(userId) {
+
+    return DS.find(&#39;users&#39;, userId, { bypassCache: true });
+}
+</code></pre>
+<p>Pour vider manuellement le cache:</p>
+<pre class="js"><code>return DS.ejectAll(&#39;users&#39;);</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="http://www.js-data.io/v2.8/docs/working-with-the-data-store">js-data: Working with the data store</a></li>
+<li><a href="http://www.js-data.io/docs/resources">js-data: Resources/Models</a></li>
+</ul>
+<h3 id="adapters">Adapters</h3>
+<p>Par défaut, JS-Data stocke les données sur serveur http (REST API) via l'adaptateur http.</p>
+<p>Il est possible d'utiliser un autre adaptateur (localforage, firebase...) ou d'en écrire un sois-même.</p>
+<h4 id="localforage">LocalForage</h4>
+<p>Installation via bower:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">bower</span> install --save localforage js-data js-data-localforage</code></pre>
+<p>Attention, vérifier que les dépendances sont déclarées dans le bon ordre dans bower.json:</p>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="er">&quot;js-data&quot;:</span> <span class="er">&quot;~2.8.2&quot;,</span>
+<span class="er">&quot;js-data-localforage&quot;:</span> <span class="er">&quot;~2.1.1&quot;,</span>
+<span class="er">&quot;js-data-angular&quot;:</span> <span class="er">&quot;~3.1.0&quot;,</span></code></pre>
+<p>Remplacement de l'adapteur http par l'adapteur local forage:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.profile&#39;).run(runModule);
+
+/** @ngInject */
+function runModule(DS, DSLocalForageAdapter) {
+
+    // make local forage the default adapter
+    DS.adapters.localForage === DSLocalForageAdapter;
+    DS.registerAdapter(&#39;localForage&#39;, DSLocalForageAdapter, {
+        default: true
+    });
+
+}</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="http://www.js-data.io/docs/working-with-adapters">js-data: Adapters</a></li>
+<li><a href="http://www.js-data.io/v2.8/docs/dslocalforageadapter">dsLocalForageAdapter</a></li>
+</ul>
+<h2 id="sécurité-dune-application-angularjs">Sécurité d'une application AngularJS</h2>
+<ul>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li>Page précédente: <a href="02.02.js-data-fr.md">JS Data</a></li>
+<li>Page suivante: <a href="02.04.i18n-l9n-fr.md">Internationalisation et localisation</a></li>
+</ul>
+<h3 id="a-propos-de-la-sécurité-côté-client">A propos de la sécurité côté client</h3>
+<p>La gestion de la sécurité côté client vise à :</p>
+<ul>
+<li>authentifier l'utilisateur auprès du serveur</li>
+<li>adapter l'interface en fonction des droits de l'utilisateurs</li>
+</ul>
+<p>Elle a donc principalement un rôle de présentation, et en aucun cas elle ne se substitue à la sécurité côté serveur car elle est très facilement contournable.</p>
+<h3 id="authentification-par-token">Authentification par token</h3>
+<h4 id="principes">Principes</h4>
+<p>L'authentification se fait auprès du serveur d'authentification via un mécanisme quelconque (par exemple login/password), et génère un token d'authentification unique au client.</p>
+<p>Le client stocke ensuite le token (en mémoire, dans le local storage, dans un cookie...).</p>
+<p>Ensuite, le client s'authentifie auprès des serveurs de données (API rest par exemple) en insérant le token en entête de toutes les requêtes. Les serveurs de données vérifient la validité du token auprès du serveur d'authentification.</p>
+<p>L'exemple le plus répandu est OAuth 2 qui permet d'externaliser l'authentification d'une ou plusieurs applications.</p>
+<p><em>Resources</em>: * <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2">An Introduction to OAuth 2</a></p>
+<h4 id="avantages">Avantages</h4>
+<p>Plus flexible, l'authentificaiton par token présente plusieurs avantages par rapport à l'authentification classique par cookie: * scalabilité: réplication aisée des serveurs (stateless) : mémoire: plus de sessions qui saturent la mémoire du serveur si beaucoup d'utilisateurs * API consommables depuis n'importe quel application (Web, Mobile, serveur...) car plus de problem CORS * authentification flexible car découplée des API Rest (e.g. Single Sign On) * plus de vulnérabilité cross-site request forgery (CSRF) car les URLs d'un site tiers n'auront pas le token dans le security header</p>
+<p>Points importants: * les communications doivent se faire en https pour éviter le vol de token (man-in-the-middle) * les tokens doivent avoir une durée de vie limitée, et être renouvellés * les token étant stockés dans le navigateur, ils sont vulnérables aux attaques cross-site scripting (XSS) =&gt; injection de javascript depuis les commentaires, évitable en échapant le html</p>
+<p><em>Resources</em>: * <a href="https://auth0.com/blog/2014/01/07/angularjs-authentication-with-cookies-vs-token/">Cookies vs Tokens. Getting auth right with Angular.JS</a> * <a href="https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication">The ins and outs of token based authentication</a> * <a href="https://letsencrypt.org/">Let's encrypt</a>: des certificats SSL certifiés gratuits</p>
+<h3 id="json-web-tokens-jwt">JSON Web Tokens (JWT)</h3>
+<p>JWT vise à standardiser le mécanisme d'authentification par token, en y apportant au passage le cryptage. Il est compatible avec OAuth 2.</p>
+<p>JWT défini le format du token, composé de 3 parties (encodées en base64) séparées par un point: * header: l'entête du message * payload: informations concernant le token * signature: la signature du token</p>
+<p>Le header contient à minima le type de signature et l'algorythme de cryptage:</p>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+  <span class="er">“alg”</span><span class="fu">:</span> <span class="er">“HS</span><span class="dv">256</span><span class="er">”</span><span class="fu">,</span>
+  <span class="er">“typ”</span><span class="fu">:</span> <span class="er">“JWT”</span>
+<span class="fu">}</span></code></pre>
+<p>Le payload contient des informations complémentaires sur le token (sujet, origine, destinataire, date de création, date d'expiration, identifiant). Il peut être enrichi avec des meta-data personalisées, comme le profil de l'utilisateur dans le cas d'un JWT d'authentification.</p>
+<p>La sécurité est assurée par HTTPS, mais le payload peut également être encrypté via Json Web Encryption (JWE).</p>
+<p>La signature permet au serveur de vérifier l'authenticité du token via la clé privée qu'il est le seul à connaitre.</p>
+<p><em>Resources</em>: * <a href="https://github.com/auth0/angular-jwt">angular-jwt</a>: intégrer JWT dans AngularJS * <a href="http://jwt.io/introduction/">Introduction to JSON Web Tokens</a> * <a href="https://scotch.io/tutorials/the-anatomy-of-a-json-web-token">The Anatomy of a JSON Web Token</a> * <a href="https://auth0.com/blog/2015/03/31/critical-vulnerabilities-in-json-web-token-libraries/">Critical vulnerabilities in JSON Web Token libraries</a> * <a href="https://auth0.com/blog/2014/01/27/ten-things-you-should-know-about-tokens-and-cookies/">10 Things You Should Know about Tokens</a> * <a href="https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens">Authenticate a Node.js API with JSON Web Tokens</a></p>
+<p>JSON Web Token Tutorial: An Example in Laravel and AngularJS</p>
+<h3 id="authentification-jwt-via-angularjs">Authentification JWT via AngularJS</h3>
+<h4 id="authentification">Authentification</h4>
+<p>Le mécanisme d'autentification dépend du serveur. Typiquement, il peut s'agir d'une authentification par login/password.</p>
+<pre class="js"><code>$http({
+    method: &#39;POST&#39;,
+    url: &#39;/login&#39;,
+    data: {
+        login: login,
+        password: password
+    }
+}).then(function successCallback(response) {
+    // success
+}, function errorCallback(response) {
+    // authentication error
+});</code></pre>
+<p>Si l'authentification réussi, le token JWT sera retourné au client:</p>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span> 
+<span class="dt">&quot;token&quot;</span><span class="fu">:</span><span class="st">&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjM1ZjE4ODE1YmQ0MDI5MzgyN2MzMGMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE0NDYzODczMDYsImV4cCI6MTQ0NjQwNTMwNn0.MoAHLQJdcc3trWEKiiFySd5x1QssfasqumWFIG1IrTI&quot;</span>
+<span class="fu">}</span></code></pre>
+<p><a href="http://www.toptal.com/web/cookie-free-authentication-with-json-web-tokens-an-example-in-laravel-and-angularjs">JSON Web Token Tutorial: An Example in Laravel and AngularJS</a></p>
+<h4 id="manipulation-du-token">Manipulation du token</h4>
+<p>Le token peut être manipulé via <a href="https://github.com/auth0/angular-jwt">angular-jwt</a>.</p>
+<p>Décoder le token:</p>
+<pre class="js"><code>    var tokenClaims = jwtHelper.decodeToken(data.token);</code></pre>
+<p>Le token peut alors être décrypté afin d'extraire le payload et obtenir les informations concernant l'utilisateur:</p>
+<pre class="js"><code>var tokenClaims = jwtHelper.decodeToken(token);
+// Token claims: Object { _id=&quot;5635f18815bd40293827c30c&quot;,  role=&quot;admin&quot;,  iat=1446387614,  ...}</code></pre>
+<p>Sur cet exemple, le token claims contient l'identifiant de l'utilisateur ainsi que son rôle, que nous pouvons utiliser pour construire l'utilisateur connecté:</p>
+<pre class="js"><code>var user = {
+    id: tokenClaims._id,
+    role: tokenClaims.role
+};</code></pre>
+<h4 id="stockage-du-token-de-sécurité">Stockage du token de sécurité</h4>
+<p>En fonction du comportement souhaité, le token peut-être stocké: * dans le local storage: le token sera conservé dans le navigateur pour le domaine courant (pas de date d'expiration mais le token expirera côté serveur) =&gt; supporté par la plupart des navigateurs, limité à 5Mo par domaine * dans le session storage: le token sera conservé dans le navigateur pour l'onglet courant (permet d'avoir différents utilisateurs connectés dans différents onglets) =&gt; encore mal supporté par les navigateurs * dans un cookie: utile pour partager un token entre différents sous-domaines (mais créé un peu de traffic client/serveur et est limité à 4ko) * dans une variable, en mémoire: un simple rafraichissement de la page déconnectera alors l'utilisateur</p>
+<p>Ce token sera ensuite accessible dans toute l'application.</p>
+<h4 id="ajout-automatique-du-token-dans-le-security-header">Ajout automatique du token dans le security header</h4>
+<p>Le token de sécurité peut alors être ajouté automatiquement à chaque requête via un http interceptor:</p>
+<pre class="js"><code>
+// register the previously created AuthInterceptor
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push(&#39;BearerAuthInterceptor&#39;);
+});
+
+app.factory(&#39;BearerAuthInterceptor&#39;, function ($window, $q) {
+    return {
+        request: function(config) {
+            config.headers = config.headers || {};
+            
+            // get token from local storage
+            var token = $window.localStorage.getItem(&#39;token&#39;);
+            
+            if (token) {
+              // may also use sessionStorage
+                config.headers.Authorization = &#39;Bearer &#39; + token;
+            }
+            return config || $q.when(config);
+        },
+        response: function(response) {
+            if (response.status === 401 || response.status === 403) {
+                //  manage error (redirect, logout...)
+            }
+            return response || $q.when(response);
+        }
+    };
+});
+</code></pre>
+<p>Au passage, les erreurs de sécurité http peuvent être interceptées et déclencher une redirection vers la page de login par exemple.</p>
+<h4 id="renouvellement-du-token">Renouvellement du token</h4>
+<p>Si le serveur supporte le renouvellement du token, il est possible de tester la date de validité via angular-jwt et de renouveller le token avant de l'envoyer au serveur.</p>
+<p>Checker la date d'expiration (par exemple pour renouveller le token):</p>
+<pre class="js"><code>    var tokenExpirationDate = jwtHelper.getTokenExpirationDate(data.token);
+
+    var isTokenExpired = jwtHelper.isTokenExpired(data.token);</code></pre>
+<h3 id="filtrage-du-contenu-par-rôle">Filtrage du contenu par rôle</h3>
+<p>Création d'une directive pour filtrer le contenu par role.</p>
+<p>``` js angular.module('tw.practice').directive('twHasRole', twHasRole); /** <span class="citation">@ngInject</span> */ function twHasRole(Auth) { return { scope: {}, link: function preLink($scope, element, attrs) {</p>
+<pre><code>        if (Auth.hasRole(attrs.twHasRole)) {
+            // show
+            element.removeClass(&#39;hidden&#39;);
+        } else {
+            // hide
+            element.addClass(&#39;hidden&#39;);
+        }
+
+    }
+};</code></pre>
+<p>} ```<br />Utilisation:</p>
+<p><code>handlebars  &lt;div tw-has-role=&quot;admin&quot;&gt;     &lt;a href=&quot;/administration&quot;&gt;Page admin&lt;/a&gt; &lt;/div&gt;</code></p>
+<h3 id="sécurisation-des-urls-ui-router">Sécurisation des URLs (ui-router)</h3>
+<p>Il est possible de rediriger automatiquement un utilisateur si il n'a pas le droit d'accéder à une page.</p>
+<p>Association des roles aux urls via un enrichissement personnalisé de l'objet &quot;state&quot;:</p>
+<p><code>js  $stateProvider.state('edit-user', {     url: &quot;/edit-user/:userId&quot;,     templateUrl: 'app/profile/profile.user-edit.html',     controller: 'TwProfileUserEditController',     controllerAs: 'vm',     roles: ['admin'] })</code></p>
+<p>Puis interception des changements sur ui-router pour ajouter une vérification personalisée (et redirection si l'utilisateur n'a pas le rôle requis pour afficher la page): ``` js function configureRoutesSecurity($log, $rootScope, $state, twSecurityService, twRouteSecurityService) {</p>
+<pre><code>// redirect if user does not has access to next route
+var cb = $rootScope.$on(&#39;$stateChangeStart&#39;, function (event, nextState) {
+
+    if (!twRouteSecurityService.hasAccess(nextState)) {
+        // prevent current route change
+        event.preventDefault();
+        if (twSecurityService.isAuthenticated()) {
+            // access denied
+            $log.error(&#39;Access denied: redirect to home page.&#39;);
+            $state.go(&#39;view-users&#39;);
+        } else {
+            // use not authenticated
+            $log.error(&#39;User not authenticated: redirect to login page.&#39;);
+            $state.go(&#39;login&#39;);
+        }
+    }
+
+});
+$rootScope.$on(&#39;$destroy&#39;, cb)</code></pre>
+<p>} ```</p>
+<h2 id="internationalisation-et-localisation">Internationalisation et localisation</h2>
+<ul>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li>Page précédente: <a href="02.03.security-fr.md">Sécurité</a></li>
+<li>Page suivante: <a href="02.05.non-ng-libs.service-fr.md">Interractions avec des bibliothèques non-angular - services</a></li>
+</ul>
+<h3 id="localisation">Localisation</h3>
+<p>Pour localiser les filtres currency et date, installer le module angular-i18n et inclure le fichier correspondant à la locale dans la page html:</p>
+<pre class="sourceCode html"><code class="sourceCode html">
+   <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;i18n/angular-locale_fr-fr.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></code></pre>
+<p>Avec bower:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="kw">bower</span> install --save angular-i18n</code></pre>
+<p>Puis surcharger la configuration par défaut dans le fichier bower.json du projet:</p>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="er">&quot;overrides&quot;:</span> <span class="fu">{</span>
+    <span class="dt">&quot;angular-i18n&quot;</span><span class="fu">:</span> <span class="fu">{</span>
+        <span class="dt">&quot;main&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;angular-locale_fr-fr.js&quot;</span><span class="ot">]</span>
+    <span class="fu">}</span>
+<span class="fu">}</span></code></pre>
+<p>C'est l'outil de build (gulp, grunt...) qui se chargera alors d'injecter ce fichier dans le fichier html.</p>
+<p>Pour changer de locale dans l'application, il faut s'adresser à un module externe: <a href="https://github.com/lgalfaso/angular-dynamic-locale">angular-dynamic-locale</a>.</p>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/guide/i18n">i18n and l10n</a></li>
+</ul>
+<h3 id="angular-translate">angular-translate</h3>
+<p>Pour traduire son application, la solution la plus répandue est l'utilisation de la directive angular-translate.</p>
+<p>Directive &quot;translate&quot;: <code>handlebars      &lt;span translate=&quot;contacts.success&quot;&gt;Your message has been successfully sent. You will receive an answer as soon as possible.&lt;/span&gt;</code></p>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://github.com/angular-translate/angular-translate">angular-translate</a></li>
+</ul>
+<h3 id="angular-1.4-i18n">Angular 1.4 i18n</h3>
+<h4 id="pour-un-meilleur-support-i18n-dans-angular">Pour un meilleur support i18n dans angular</h4>
+<p>A partir de la version 1.4, Angular vise à fournir un meilleur support pour l'internationalisation.</p>
+<p>Sur le document de travail, on peut trouver les reproches suivant concernant angular-translate:</p>
+<ul>
+<li>mauvais support de la pluralisation</li>
+<li>problèmes de sécurité si mal configuré(XSS / Cross-site scripting)</li>
+<li>problèmes de performances lors du chargement des traductions</li>
+<li>beaucoup de balises spécifiques</li>
+<li>système d'id pas pratique (pourrait être remplacé par le message lui-même)</li>
+<li>compliqué de traduire des fragments entiers de html</li>
+</ul>
+<p>De plus, le projet vise à fournir des outils permettant de rendre plus simple l'industrialisation de l'i18n: * outils pour extraire les messages de l'application afin de les fournir aux services de traduction dans différents formats * outils pour transformer les traductions dans des formats exploitables par l'application angular * outils pour packager les traductions en plusieurs fragments pour chaque locale</p>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1mwyOFsAD-bPoXTk3Hthq0CAcGXCUw-BtTJMR4nGTY-0">Angular and Internationalization: The New World</a></li>
+<li><a href="http://angular-translate.github.io/docs/#/guide/19_security">angular-ui security</a>: escaping of variable content</li>
+</ul>
+<h4 id="messageformat-extensions">MessageFormat extensions</h4>
+<p>La première brique de cette refonte de l'internationalisation est MessageFormat, livrée avec Angular 1.4:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="kw">bower</span> install --save angular-message-format</code></pre>
+<p>Chargement du module:</p>
+<pre class="js"><code>
+angular.module(&#39;app&#39;, [&#39;ngMessageFormat&#39;]);
+</code></pre>
+<p>Exemple de pluralization: <code>handlebars  &lt;div class=&quot;alert alert-info&quot;&gt;       {{vm.users.length, plural, offset:0           =0    {There is no user}           =1    {There is only one user}           other {There are # users (including you {{ vm.currentUser.firstName }}).}       }} &lt;/div&gt;</code></p>
+<p>Exemple de gestion du genre:</p>
+<p><code>handlebars  &lt;th&gt;Gender&lt;/th&gt; &lt;td&gt;     {{vm.user.gender, select,         male {He is a man.}         female {She is a women.}         other {Unknown gender.}     }} &lt;/td&gt;</code></p>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/guide/i18n#messageformat-extensions">Angular I18N guide: MessageFormat Extensions</a></li>
+<li><a href="http://pascalprecht.github.io/slides/better-i18n-for-your-angular-apps/">better i18n for your angular apps</a></li>
+<li><p><a href="http://blog.ninja-squad.com/2015/07/21/what-is-new-angularjs-1.4/">What's new in AngularJS 1.4</a> ## Intégration de librairies non angular - services</p></li>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li>Page précédente: <a href="02.04.i18n-l9n-fr.md">Internationalisation et localisation</a></li>
+<li><p>Page suivante: <a href="02.06.non-ng-libs.directive-fr.md">Interractions avec des bibliothèques non-angular - directives</a></p></li>
+</ul>
+<h3 id="introduction-1">Introduction</h3>
+<p>Afin d'intégrer dans une application angular des librairies javascript classiques, il faut les encapsuler dans des composants angular classiques (services, directives, filtres...).</p>
+<p>Cela permet de les utiliser de façon classiques, et de limiter les conflits en n'ayant pas recours à des variables globales.</p>
+<p>De plus, le niveau d'abstraction apporté par le service ou la directive angular permet de changer de librairie (ou de version) sans impacter le reste de l'application.</p>
+<p>Il convient souvent de créer un module spécifique pour intégrer la librairie tierce.</p>
+<h3 id="wrapper-service">Wrapper service</h3>
+<p>Pour intégrer un librairie non-graphique, il suffit de déclarer un service dit &quot;wrapper&quot;, qui va exposer cette librairie au mécanisme d'injection de dépendances d'angular et la rendre ainsi accessible à l'ensemble de l'application.</p>
+<p>Exemple avec moment.js:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice&#39;).factory(&#39;twMoment&#39;, twMoment);
+
+    /** @ngInject */
+    function twMoment($window, $log) {
+        if (!$window.moment) {
+            $log.error(&#39;Global moment variable is not available.&#39;);
+            return null;
+        }
+        var service = $window.moment;
+
+        return service;
+    }
+
+})();</code></pre>
+<p>Note: les variables globales sont accessibles via l'objet $window. Si la libraire n'est pas présente, il est judicieux de logger une erreur.</p>
+<h3 id="noconflict">NoConflict</h3>
+<p>De nombreuses librairies proposent une solution visant à ne pas exposer de variable globale, afin d'éviter les conflits avec d'autres librairies.</p>
+<p>Dans ce cas, il faut utiliser cette méthode dans le service wrapper.</p>
+<p>Exemple avec leaflet:</p>
+<pre class="js"><code>    function twLeaflet($window, $log) {
+        
+        // ...
+        
+        var service = $window.L.noConflict();
+        
+        return service;
+    }</code></pre>
+<h2 id="intégration-de-librairies-non-angular---directives">Intégration de librairies non angular - directives</h2>
+<ul>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li>Page précédente: <a href="02.05.non-ng-libs.service-fr.md">Interractions avec des bibliothèques non-angular - services</a></li>
+<li>Page suivante: <a href="02.07.d3-fr.md">D3 - data-driven documents</a></li>
+</ul>
+<h3 id="généralités">Généralités</h3>
+<p>Si la librairie intégère des comportements graphiques, il convient de l'encapsuler dans une directive.</p>
+<p>Afin d'accéder à la librairie, la directive utilisera un service wrapper.</p>
+<p>Exemple:</p>
+<pre class="js"><code>    angular.module(&#39;tw.practice.map&#39;).directive(&#39;twLeafletMap&#39;, twLeafletMap);
+
+    function twLeafletMap() {
+        return {
+            templateUrl: &#39;app/components/map/leaflet/leaflet-map.directive.html&#39;,
+            controllerAs: &#39;vm&#39;,
+            scope: {
+                // scope parameters here
+            },
+            bindToController: true,
+            controller: TwLeafletMapController
+        };
+    }
+
+    /** @ngInject */
+    function TwLeafletMapController($scope, $log, $timeout, twLeaflet) {
+
+        var vm = this;
+
+        // ...
+
+        function renderMap() {
+
+            // usage of twLeaflet wrapper service
+            vm.map = twLeaflet.map(&#39;tw-map-id&#39;).setView(vm.config);</code></pre>
+<h3 id="intégration-due-librairie---en-pratique">Intégration d'ue librairie - en pratique</h3>
+<p>Pour intégrer une librairie via une directive, il y a au moins 2 approches possibles: * intégration progressive à partir d'un exemple (quick start ou exemple complexe) * création &quot;from scratch&quot; à partir de la documentation</p>
+<p>Une approche itérative en démarrant avec un exemple puis en consultant peu à peu la documentation permet de démarrer rapidement, tout en montant progressivement en compétence au fur et à mesure des besoins.</p>
+<h4 id="intégration-statique-des-fichiers">Intégration statique des fichiers</h4>
+<p>Pour commencer, se référer à un exemple (simple de préférence) et intégrer le code brut CSS, JS et HTML dans les fichiers correspondants de l'application.</p>
+<div class="figure">
+<img src="images/donut-chart-file-tree.png" title="Organisation des fichiers du module chart" alt="files tree" />
+<p class="caption">files tree</p>
+</div>
+<p>Vérifier que l'exemple se charge correctement dans la page:</p>
+<div class="figure">
+<img src="images/donut-example.png" title="Donut example" alt="files tree" />
+<p class="caption">files tree</p>
+</div>
+<h4 id="nettoyage-de-lexemple">Nettoyage de l'exemple</h4>
+<p>Les différents étapes sont ensuite: * nettoyage du code, style, templates pour retirer les éléments inutiles (par exemple, ici, il y a 2 donuts, alors que notre exemple n'en requiert qu'un seul) * appel aux services wrappers au lieu des services natifs</p>
+<h3 id="définir-lapi">Définir l'API</h3>
+<p>Avant de démarrer l'intégration d'une librairie, il faut commencer par concevoir l'API de la directive, exposée via les paramètres du scope.</p>
+<p>Parmis les besoins fréquents: * de personaliser l'initialisation du composant * de synchroniser le modèle de données * de réagir aux évênements (ce qui peut être fait directement via le modèle de données)</p>
+<p>Pour un usage interne, il n'est pas nécessaire d'exposer à travers des paramètres toutes les fonctionnalités de la librairie tierce, mais seulement ce qui est utile à l'application.</p>
+<h3 id="implémentation-de-lapi">Implémentation de l'API</h3>
+<ul>
+<li>implementation des tests unitaires</li>
+<li>implémentation progressive de l'API</li>
+</ul>
+<h4 id="synchronisation-du-modèle-vers-la-librairie">Synchronisation du modèle vers la librairie</h4>
+<p>La librairie ne connaissant pas le contexte d'angular, il faut se mettre manuellement à l'écoute du modèle afin de mettre à jour la librairie en cas de changement:</p>
+<p>Exemple avec D3:</p>
+<pre class="js"><code>$scope.$watch(&#39;vm.chartData&#39;, function (chartData) {
+    if (chartData) {
+          twD3.select(&#39;#&#39; + vm.chartConfig.cssId)
+            .datum(chartData)
+              .transition().duration(1200)
+            .call(chart1);
+    }
+});</code></pre>
+<h4 id="mise-à-jour-du-modèle-depuis-la-librairie">Mise à jour du modèle depuis la librairie</h4>
+<p>Pour mettre à jour le modèle depuis la librairie, il faut se mettre à l'écoute de ses listeners.</p>
+<p>Exemple avec leaflet:</p>
+<pre class="js"><code>vm.map = twLeaflet.map(&#39;tw-map-id&#39;).setView(vm.config);
+
+vm.map.on(&#39;click&#39;, function (e) {
+    // propagate the event
+    vm.mapConfig.events.click(e);
+
+    // or update the model
+    vm.item.location = e.latlng;
+});</code></pre>
+<h2 id="d3---data-driven-documents">D3 - data-driven documents</h2>
+<ul>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li>Page précédente: <a href="02.06.non-ng-libs.directive-fr.md">Interractions avec des bibliothèques non-angular - directives</a></li>
+<li>Page suivante: <a href="02.08.leaflet-fr.md">Web mapping avec leaflet</a></li>
+</ul>
+<h3 id="présentation">Présentation</h3>
+<p>D3.js permet d'afficher des données sous la forme de graphiques dynamiques.</p>
+<div class="figure">
+<img src="images/d3.png" title="Exemples de réalisations avec D3" alt="files tree" />
+<p class="caption">files tree</p>
+</div>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="http://d3js.org/">D3</a>: data-driven documents</li>
+<li><a href="https://github.com/mbostock/d3/wiki/Gallery">D3 gallery</a>: exemples de réalisation</li>
+<li><a href="https://www.dashingd3js.com/d3-resources/d3-and-angular">D3 and Angular</a>: a list of D3 angular resources</li>
+<li><a href="https://github.com/vega/vega/wiki/Vega-and-D3">Vega and D3</a>: a visualization grammar (pour aller plus loin)</li>
+</ul>
+<h2 id="nvd3---composants-d3-réutilisables">NVD3 - composants D3 réutilisables</h2>
+<p>D3 étant une librairie puissante, mais bas niveau, NVD3 propose des composants réutilisables basés sur D3.</p>
+<div class="figure">
+<img src="images/nvd3.png" title="Exemples de réalisations avec NVD3" alt="files tree" />
+<p class="caption">files tree</p>
+</div>
+<p><em>Resources</em>: * <a href="https://github.com/novus/nvd3">NVD3</a>: re-usable charts and chart components for d3.js</p>
+<h3 id="nvd3---intégration-à-lapplication">NVD3 - intégration à l'application</h3>
+<p>Installation de D3 et NVD3 via bower:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">bower</span> install --save nvd3</code></pre>
+<p>Création d'un module spécifique:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.chart&#39;, []);</code></pre>
+<p>Création d'un wrapper pour chacune des librairies:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.chart&#39;).factory(&#39;twD3&#39;, twD3);
+
+/** @ngInject */
+function twD3($window, $log) {
+   // ...
+}
+
+angular.module(&#39;tw.practice.chart&#39;).factory(&#39;twNvd3&#39;, twNvd3);</code></pre>
+<p>Se reporter au chapitre sur les wrappers.</p>
+<p><em>Resources</em>: * <a href="02.05.non-ng-libs.service-fr.md">Intégration de librairies non angular</a></p>
+<h3 id="nvd3---création-dune-directive">NVD3 - création d'une directive</h3>
+<p>La documentation étant limitée, la meilleure approche est l'intégration d'un exemple.</p>
+<p><em>Resources</em>: * <a href="02.06.non-ng-libs.directive-fr.md">Intégration de librairies non angular - directives</a> * <a href="https://github.com/nvd3-community/nvd3/blob/gh-pages/examples/donutChart.html">Exemple donutChart</a> ## Web mapping avec Leaflet</p>
+<ul>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li>Page précédente: <a href="02.07.d3-fr.md">D3 - data-driven documents</a></li>
+<li>Page suivante: <a href="02.09.json-patch-fr.md">JSON Patch</a></li>
+</ul>
+<h3 id="introduction-2">Introduction</h3>
+<p>Librairie permettant de manipuler des cartes, d'interragir avec elles et d'y afficher des données (Web mapping).</p>
+<p>Les fonds de cartes (tiles) peuvent provenir de Google Map, Bing, Open Street Map, ou encore de fond personnalisés générés à partir de données mixtes (publiques, internes).</p>
+<div class="figure">
+<img src="images/leaflet.png" title="Leaflet example" alt="files tree" />
+<p class="caption">files tree</p>
+</div>
+<p><em>Resources:</em></p>
+<ul>
+<li><a href="http://leafletjs.com/">leaflet</a></li>
+<li><a href="https://github.com/mapbox/tilemill">tilemill</a>: excellent outil de création de tiles</li>
+<li><a href="https://github.com/kosmtik/kosmtik">kosmtik</a>: nouveau projet proche de tilemill</li>
+<li><a href="https://github.com/mapbox/mapbox-studio-classic">Mapbox Studio Classic</a>: équivalent de tilemill intégré à Mapbox</li>
+</ul>
+<h3 id="leaflet---utilisation-dune-directive-tierce">Leaflet - utilisation d'une directive tierce</h3>
+<p>Une directive permet d'utiliser simplement leaflet dans une application angular. Le projet vient d'être intégré à angular-ui.</p>
+<p>Elle est pour le moment sous-documentée, mais, en fonction du besoin, il peut-être pertinent de s'appuyer dessus quand elle le sera.</p>
+<p><em>Resources:</em></p>
+<ul>
+<li><a href="https://github.com/angular-ui/ui-leaflet">ui-leaflet</a>: directive leaflet</li>
+</ul>
+<h3 id="leaflet---intégration-à-lapplication">Leaflet - intégration à l'application</h3>
+<p>Installation via bower de la version en cours de développement:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">bower</span> install --save leaflet#1.0.0-beta.2</code></pre>
+<p>Création d'un module spécifique:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.map&#39;, []);</code></pre>
+<p>Création d'un wrapper (en mode noConflict):</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.map&#39;).factory(&#39;twLeaflet&#39;, twLeaflet);
+
+/** @ngInject */
+function twLeaflet($window, $log) {
+    if (!$window.L) {
+        $log.error(&#39;Global L variable is not available.&#39;);
+        return null;
+    }
+
+    var service = $window.L.noConflict();
+
+    return service;
+}</code></pre>
+<p>Se reporter au chapitre sur les wrappers.</p>
+<p><em>Resources</em>: * <a href="http://leafletjs.com">Leaflet</a> * <a href="02.05.non-ng-libs.service-fr.md">Intégration de librairies non angular</a></p>
+<h3 id="leaflet---création-dune-directive">Leaflet - création d'une directive</h3>
+<p>La documentation et les exemples étant bien fournis, il est possible d'encapsuler leaflet via un exemple ou from scratch.</p>
+<p><em>Resources</em>: * <a href="02.06.non-ng-libs.directive-fr.md">Intégration de librairies non angular - directives</a> * <a href="http://leafletjs.com/reference.html">Leaflet - documentation</a> * <a href="http://leafletjs.com/examples.html">Leaflet - exemples</a></p>
+<h2 id="json-patch">JSON Patch</h2>
+<ul>
+<li>Sommaire: <a href="02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4</a></li>
+<li>Page précédente: <a href="02.08.leaflet-fr.md">Web mapping avec leaflet</a></li>
+</ul>
+<h3 id="structure">Structure</h3>
+<p>Structure JSON permetant de définir le format d'un patch.</p>
+<p>Exemple:</p>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span> 
+    <span class="dt">&quot;op&quot;</span><span class="fu">:</span> <span class="st">&quot;replace&quot;</span><span class="fu">,</span> 
+    <span class="dt">&quot;path&quot;</span><span class="fu">:</span> <span class="st">&quot;/user/firstname&quot;</span><span class="fu">,</span> 
+    <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;Paul&quot;</span> 
+<span class="fu">}</span></code></pre>
+<p>Structure en 3 parties:</p>
+<ul>
+<li><strong>op</strong>: opération à effectuer: &quot;add&quot;, &quot;remove&quot;, &quot;replace&quot;, &quot;move&quot;, &quot;copy&quot;, or &quot;test&quot;</li>
+<li><strong>path</strong>: chemin de la propriété à modifié dans l'objet spécifié</li>
+<li><strong>value</strong>: valeur (pour &quot;opérations add, replace et test)</li>
+<li><strong>from</strong>: chemin d'origine (pour move et copy)</li>
+</ul>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://tools.ietf.org/html/rfc6902">RFC6902</a>: JavaScript Object Notation (JSON) Patch</li>
+</ul>
+</body>
+</html>

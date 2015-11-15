@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<h1 id="les-outils-du-dévelopeur-web">Les outils du dévelopeur Web</h1>
+<h2 id="node-package-manager-npm">Node Package Manager (npm)</h2>
+<h3 id="initialisation-npm-du-projet">Initialisation npm du projet</h3>
+<p>Création du fichier package.json <code>bash      npm init</code></p>
+<h3 id="installation-dun-paquet">Installation d'un paquet :</h3>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> install [options] paquet</code></pre>
+<p>Options: * -g: installation globale * --save-dev: ajout dans package.json</p>
+<h4 id="exemples">Exemples :</h4>
+<p>Installation globale d'un paquet comme super admin:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> install -g gulp</code></pre>
+<p>Installation locale d'un paquet:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> install --save-dev gulp-connect</code></pre>
+<p>Installer les dépendances du projet (package.json):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> install
+
+    <span class="kw">gulp@3.9.0</span> node_modules/gulp
+    ├── <span class="kw">pretty-hrtime@1.0.0</span>
+    ├── <span class="kw">interpret@0.6.5</span>
+    ├── <span class="kw">...</span>
+
+    <span class="kw">gulp-connect@2.2.0</span> node_modules/gulp-connect
+    ├── <span class="kw">connect-livereload@0.3.2</span>
+    ├── <span class="kw">event-stream@3.1.7</span> (...)
+    ├── <span class="kw">...</span></code></pre>
+<p>Ressources : * https://nodejs.org * https://docs.npmjs.com/cli/install</p>
+<h3 id="npm-lazy">NPM Lazy</h3>
+<p>Proxy/cache à déployer sur le réseau local de l'entreprise et/ou en local.</p>
+<p>Installation via npm:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> install -g npm_lazy</code></pre>
+<p>Vérification:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm_lazy</span> --version</code></pre>
+<p>Lancement du serveur:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm_lazy</span> --config ./npm_lazy_config.js</code></pre>
+<p>Configuration de npm (globalement ou localement):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> config set registry http://localhost:8077/</code></pre>
+<p>Vérification</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> config get registry
+    <span class="kw">http</span>://localhost:8077/</code></pre>
+<p>Restoration de la configuration d'origine:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">
+    <span class="co"># linux</span>
+    <span class="kw">npm</span> config rm registry
+    
+    <span class="co"># windows</span>
+    <span class="kw">npm</span> config delete registry</code></pre>
+<p>Vérification</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> config get registry
+    <span class="kw">https</span>://registry.npmjs.org/</code></pre>
+<p>Ressources: * https://github.com/mixu/npm_lazy</p>
+<h2 id="bower">Bower</h2>
+<h3 id="bower-outil-dinstallation-des-librairies-web"> Bower: outil d'installation des librairies Web</h3>
+<p>Permet de télécharger et d'installer des librairies Web.</p>
+<p>Alternative: browserify (basé sur requireJS et NPM): * http://browserify.org * http://requirejs.org</p>
+<h3 id="installation-de-bower">Installation de Bower</h3>
+<p>Installation globale via npm (super-admin):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> install -g bower</code></pre>
+<p>Vérification:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">bower</span> --version
+    <span class="kw">1.5.2</span></code></pre>
+<h3 id="initialisation-bower-du-projet">Initialisation bower du projet</h3>
+<p>Création du fichier bower.json</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">bower</span> init</code></pre>
+<h3 id="configuration">Configuration</h3>
+<p>Si le proxy d'entreprise est trop restrictif, on peut demander à git d'utiliser https au lieu de git :</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">git</span> config --global url.<span class="st">&quot;https://&quot;</span>.insteadOf git:// </code></pre>
+<p>Pour installer un composant:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">bower</span> install angular --save</code></pre>
+<p>Installer les dépendances bower (bower.json):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">bower</span> install
+
+    <span class="kw">bower</span> angular#~1.4.5        not-cached git://github.com/...
+    <span class="kw">bower</span> angular#~1.4.5           resolve ...
+    <span class="kw">bower</span> angular#~1.4.5          download .../v1.4.5.tar.gz
+    <span class="kw">bower</span> angular#~1.4.5           extract ...
+    <span class="kw">bower</span> angular#~1.4.5          resolved ...
+    <span class="kw">bower</span> angular#~1.4.5           install angular#1.4.5</code></pre>
+<p>Resources: * http://bower.io * http://bower.io/docs/api/#install</p>
+<h3 id="surcharge-du-fichier-par-défaut">Surcharge du fichier par défaut</h3>
+<p>Gulp injecte automatiquement les fichiers déclarés dans la section &quot;main&quot; du fichier bower.json de la librairie.</p>
+<p>Il est possible de surcharger cette propriété via l'attribut &quot;override&quot; du fichier bower.json du projet.</p>
+<p>Resources:</p>
+<ul>
+<li>(https://roots.io/using-bootstrap-with-bower-how-to-override-bower-packages/)</li>
+</ul>
+<h3 id="private-bower">Private Bower</h3>
+<p>Proxy/cache à déployer sur le réseau local de l'entreprise.</p>
+<p>Installation globale via npm:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">npm</span> install -g private-bower
+    
+    <span class="kw">private-bower</span> --version
+    <span class="kw">1.1.4</span></code></pre>
+<p>Configuration du projet (fichier .bowerrc): <code>json     {       &quot;registry&quot;: &quot;http://bowerproxy:5678&quot;,       &quot;timeout&quot;: 300000     }</code></p>
+<p>Resources:</p>
+<ul>
+<li>https://github.com/Hacklone/private-bower</li>
+</ul>
+<h2 id="gulp">Gulp</h2>
+<p>Outil d'automatisation des tâches: * concaténation et minification JS/CSS * injection automatique des librairies * création du fichier source maps * exécution des tests unitaires * serveur Web, proxy * rechargement automatique en dev * ...</p>
+<p>Installation via npm:</p>
+<p><code>bash     npm install -g gulp</code></p>
+<p>Notez l'option &quot;-g&quot; pour installer l'outil globalement. Requiert les droits de super utilisateur.</p>
+<p>Vérification:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">gulp</span> --version
+    <span class="kw">CLI</span> version 3.9.0</code></pre>
+<p>Lancement de la tâche par défaut (ici, démarrage du serveur Web en mode dev):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">gulp</span>
+    [<span class="kw">12</span>:57:36] Using gulpfile ~/Documents/dev/formation-angular/2015-09_rabat/tp-git/gulpfile.js
+    [<span class="kw">12</span>:57:36] Starting <span class="st">&#39;connect&#39;</span>...
+    [<span class="kw">12</span>:57:36] Finished <span class="st">&#39;connect&#39;</span> after 18 ms
+    [<span class="kw">12</span>:57:36] Starting <span class="st">&#39;watch&#39;</span>...
+    [<span class="kw">12</span>:57:36] Finished <span class="st">&#39;watch&#39;</span> after 11 ms
+    [<span class="kw">12</span>:57:36] Starting <span class="st">&#39;default&#39;</span>...
+    [12:57:36] Finished <span class="st">&#39;default&#39;</span> after 4.39 μs
+    [<span class="kw">12</span>:57:36] Server started http://localhost:3000
+    [<span class="kw">12</span>:57:36] LiveReload started on port 35729</code></pre>
+<p>Ouvrir l'application: * http://localhost:3000</p>
+<p>Ressources : * http://gulpjs.com</p>
+<h2 id="yeoman">Yeoman</h2>
+<h3 id="générateur-dapplications">Générateur d'applications</h3>
+<p>Générateur d'application Web:</p>
+<ul>
+<li>basé sur bower/grunt/gulp</li>
+<li>démarrage instantané du projet</li>
+<li>avec les meilleures pratiques</li>
+</ul>
+<p>Les générateurs:</p>
+<ul>
+<li><ul>
+<li>de 2000 générateurs</li>
+</ul></li>
+<li>classés par votes sur github</li>
+<li>Possibilité de créer son propre générateur</li>
+</ul>
+<p>Resources:</p>
+<ul>
+<li><a href="http://yeoman.io/generators">Liste des générateurs</a></li>
+</ul>
+<h3 id="swiift-generator-gulp-angular">Swiift generator gulp-angular</h3>
+<p>Génére une application angular + gulp/bower/npm:</p>
+<ul>
+<li>pré-intégration bower/angular des librairies les plus courantes</li>
+<li>best-practices pour l'arborescence et la syntaxe des fichiers</li>
+<li>intégration auto librairies bower</li>
+<li>production: concaténation, minification, uglyfication des css/js</li>
+<li>dev: proxy vers le serveur hébergeant l'api REST</li>
+<li>dev: rechargement à chaud des fichiers dans le navigateur</li>
+<li>compression des images</li>
+<li>transpiler les scss</li>
+<li>génération du source maps</li>
+<li>exécution des tests</li>
+</ul>
+<p>Utilisation</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">yo</span> gulp-angular
+    <span class="kw">?</span> Which version of Angular do you want? 1.4.0 (stable)
+    <span class="kw">?</span> Which Angular<span class="st">&#39;s modules would you want to have? (ngRoute and ngResource will be addressed after) angular-animate.js (enable animation features), angular-cookies.js (handle cookie management), angular-touch.js (for mobile development), angular-sanitize.js (to securely parse and manipulate HTML)</span>
+<span class="st">    ? Would you need jQuery or perhaps Zepto? None (Angular will use its own jqLite)</span>
+<span class="st">    ? Would you like to use a REST resource library? None, $http is enough!</span>
+<span class="st">    ? Would you like to use a router ? UI Router, flexible routing with nested views</span>
+<span class="st">    ? Which UI framework do you want? Bootstrap, the most popular HTML, CSS, and JS framework</span>
+<span class="st">    ? How do you want to implements your Bootstrap components? AngularStrap, AngularJS 1.2+ native directives for Bootstrap 3</span>
+<span class="st">    ? Which CSS preprocessor do you want? Sass (Node), Node.js binding to libsass, the C version of the popular stylesheet preprocessor, Sass.</span>
+<span class="st">    ? Which JS preprocessor do you want? None, I like to code in standard JavaScript.</span>
+<span class="st">    ? Which html template engine would you want? None, I like to code in standard HTML.</span></code></pre>
+<p>Resources:</p>
+<ul>
+<li><a href="https://github.com/Swiip/generator-gulp-angular">generator-gulp-angular</a></li>
+</ul>
+<h2 id="scss-css-preprocessor">SCSS: css preprocessor</h2>
+<ul>
+<li>préprocesseur css</li>
+<li>compatible css (courbe d'apprentissage aisée)</li>
+<li>variables, fonctions (mixin)</li>
+</ul>
+<p>Resources:</p>
+<ul>
+<li><a href="http://sass-lang.com/guide">sass/scss guide</a></li>
+</ul>
+<h1 id="formateur">Formateur</h1>
+<p>Nicolas TOUBLANC nicolas@toublanc.org +33 6 30 82 27 73 twitter: <span class="citation">@toubiweb</span></p>
+</body>
+</html>

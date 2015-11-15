@@ -1,0 +1,803 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<h1 id="démarrer-avec-angular-1.4">Démarrer avec Angular 1.4</h1>
+<ul>
+<li>Accueil: <a href="../README.md">Documentation support de formation</a></li>
+<li>Chapitre suivant: <a href="../02.angular-intermediate.documentation/02.00.angular-intermediate.documentation-fr.md">Pour aller plus loin avec Angular 1.4 (niveau intermédiaire)</a></li>
+</ul>
+<h2 id="pré-requis-niveau-débutant">Pré-requis (niveau débutant)</h2>
+<p>Cette formation est destinée à un public débutant avec Angular, mais ayant déjà quelques bases de Web et de javascript.</p>
+<h2 id="sommaire">Sommaire</h2>
+<ul>
+<li><a href="01.01.angular-versions-fr.md">Versions d'angular</a></li>
+<li><a href="01.02.start-angular-app-fr.md">Démarrage de l'application</a></li>
+<li><a href="01.03.modules-fr.md">Modules et organisation des fichiers</a></li>
+<li><a href="01.04.templates-fr.md">Templates</a></li>
+<li><a href="01.05.controllers-fr.md">Contrôleurs</a></li>
+<li><a href="01.06.filtres-fr.md">Filtres</a></li>
+<li><a href="01.07.services-fr.md">Services</a></li>
+<li><a href="01.08.directives-fr.md">Directives</a></li>
+<li><a href="01.09.router-fr.md">Routeur</a></li>
+<li><a href="01.10.forms-fr.md">Formulaires</a></li>
+<li><a href="01.11.rest-api-fr.md">API REST</a></li>
+<li><a href="01.12.data.http-fr.md">Service $http</a></li>
+<li><a href="01.13.data.ng-resource-fr.md">Service ng-resource</a></li>
+</ul>
+<h2 id="versions-dangular">Versions d'Angular</h2>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page suivante: <a href="01.02.start-angular-app-fr.md">Démarrage de l'application</a></li>
+</ul>
+<h3 id="branche-1.x">Branche 1.x</h3>
+<p>La branche 1.4.x est à ce jour la version stable d'angular, sur laquelle s'appuie cette formation.</p>
+<ul>
+<li><strong>1.3.x</strong> - 2014-10-13: fin de support ie8 (mais angular ie8-builds), bindToController, ngMessages…</li>
+<li><strong>1.4.x</strong> - 2015-05-27: meilleures animations, i18n, cookies</li>
+<li><strong>1.5.0-beta.1</strong> - 2015-09-29: migration, component, routeur</li>
+</ul>
+<p>Ressources : * <a href="http://blog.thoughtram.io/exploring-angular-1.3">exploring angular 1.3</a> * <a href="http://angularjs.blogspot.fr/2015/05/angular-140-jaracimrman-existence.html">angular 1.4 release</a> * <a href="https://github.com/angular/angular.js/milestones/1.5.x%20-%20migration-facilitation">angular 1.5 milestone</a> * <a href="https://github.com/fergaldoyle/angular.js-ie8-builds">angularjs ie8 builds for angular &gt; 1.3</a></p>
+<h3 id="branche-2.x">Branche 2.x</h3>
+<p>La branche 2.x est une ré-écriture d'angular basée sur TypeScript, ES6 et les Web components.</p>
+<p>Elle comporte une nouvelle syntaxe pour les templates et est incompatible avec la version 1.x.</p>
+<p>A noter aussi le support d'un rendering côté serveur, permettant de servir des pages statiques sans javascript.</p>
+<ul>
+<li><strong>2.0.0-alpha.46</strong> - 2015-11-11: dernière version alpha (developer preview, instable)</li>
+</ul>
+<p>Ressources : * <a href="http://angularjs.blogspot.fr">blog officiel d'angularjs</a> * <a href="https://angular.io/docs/ts/latest/">angular.io documentation</a> * <a href="https://github.com/angular/angular">angular github repository</a> ## Démarrage de l'application angular</p>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.01.angular-versions-fr.md">Versions d'angular</a></li>
+<li>Page suivante: <a href="01.03.modules-fr.md">Modules</a></li>
+</ul>
+<p>Chargement des scripts dans (index.html):</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="co">&lt;!-- dépendance Angular --&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="ot"> src=</span><span class="st">&quot;bower_components/angular/angular.js&quot;</span><span class="kw">&gt;</span> <span class="kw">&lt;/script&gt;</span>
+
+<span class="co">&lt;!-- votre application --&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="ot"> src=</span><span class="st">&quot;app.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></code></pre>
+<p>Déclaration de l'application dans le fichier principal (app.js):</p>
+<pre class="js"><code>angular.module(&#39;tw.practice&#39;, []);</code></pre>
+<p>Chargement de l'application (index.html):</p>
+<pre class="sourceCode html"><code class="sourceCode html">
+<span class="kw">&lt;html</span><span class="ot"> ng-app=</span><span class="st">&quot;tw.practice&quot;</span><span class="kw">&gt;</span>
+    <span class="co">&lt;!-- your application here --&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>L'application peut-être chargée sur l'ensemble de la page, ou sur une balise quelconque. Il est donc possible (mais très peu commun) de charger plusieurs applications angular sur une même page.</p>
+<p>Ressources : * <a href="https://code.angularjs.org/1.4.7/docs/guide/bootstrap">bootstrap angular</a> # Modules et organisation des fichiers</p>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.02.start-angular-app-fr.md">Démarrage de l'application</a></li>
+<li>Page suivante: <a href="01.04.templates-fr.md">Templates</a></li>
+</ul>
+<h2 id="composants">Composants</h2>
+<p>Découpage en fichiers: 1 fichier par composant: * contrôleur * template * service * directive * filter * feuille de style</p>
+<p>Pour chaque fichier: * IFFE (Immediately Invoked Function Expression) * mode strict</p>
+<pre class="js"><code>(function () {
+    &#39;use strict&#39;;
+    // ...
+})();</code></pre>
+<p>Regroupage des composants lié à la même fonctionnalité par dossier:</p>
+<div class="figure">
+<img src="images/files-tree.png" title="Tous les fichiers (template, controlleur, services, styles) sont regroupés par composant" alt="files tree" />
+<p class="caption">files tree</p>
+</div>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://github.com/johnpapa/angular-styleguide#single-responsibility">johnpapa angular style guide: single responsibility</a></li>
+</ul>
+<h2 id="modules">Modules</h2>
+<p>Composants regroupés en modules: * 1 fonctionnalité (ou ensemble) = 1 module * 1 module: scripts, templates, et styles * meilleure isolation des composants</p>
+<p>Possibilité d'ajouter des fonctionnalités sans faire exploser la complexité de l'architecture</p>
+<h3 id="déclaration-dun-module">Déclaration d'un module</h3>
+<p>Déclaration du module dans le fichier principal du module (profile.js) :</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.profile&#39;, []);</code></pre>
+<p>Injection du module dans l'application (app.js):</p>
+<pre class="js"><code>angular.module(&#39;tw.practice&#39;, [&#39;tw.practice.profile&#39;]);</code></pre>
+<p>Le contrôleur est déclaré dans le module (profile.user-edit.ctrl.js):</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.profile&#39;)
+    .controller(&#39;TwProfileUserEditController&#39;, Controller);</code></pre>
+<p>Tous les fichiers doivent être chargés dans le fichier html:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;profile/pages/user-profile.edit/user-profile.edit.css&quot;</span><span class="kw">&gt;</span>
+...
+<span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;profile/profile.module.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;profile/pages/user-profile.edit/user-profile.edit.ctrl.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></code></pre>
+<p>Séquence de chargement de l'application: * les modules sont déclarés * les contrôleurs sont chargés dans les modules * les services ($scope, $log) sont injectés (inversion de contrôle) * les dépendances entre modules sont résolues * l'application peut démarrer</p>
+<h2 id="templates-et-bi-directional-data-binding">Templates et bi-directional data-binding</h2>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.03.modules-fr.md">Modules</a></li>
+<li>Page suivante: <a href="01.05.controllers-fr.md">Contrôleurs</a></li>
+</ul>
+<p>Angular fourni un mécanisme de synchronisation entre le modèle et la vue, appelé bi-directional data-binding.</p>
+<p>Exemple (index.html):</p>
+<pre class="handlebars"><code>&lt;div&gt;
+    &lt;label&gt;Entrez votre prénom&lt;/label&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;text&quot; ng-model=&quot;firstName&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p ng-if=&quot;firstName&quot;&gt;Bonjour {{ firstName }}!&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;ng-model=&quot;firstName&quot;&lt;/li&gt;
+    &lt;li&gt;{{ firstName }}&lt;/li&gt;
+    &lt;li&gt;Bi-directional data-binding&lt;/li&gt;
+    &lt;li&gt;ng-if=&quot;firstName&quot;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>La valeur du champ firstName est synchronisée avec le modèle, et est donc automatiquement mise à jour dans template.</p>
+<ul>
+<li>Ressources :</li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/guide/databinding">databinding guide</a></li>
+</ul>
+<h2 id="contrôleurs">Contrôleurs</h2>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.04.templates-fr.md">Templates</a></li>
+<li>Page suivante: <a href="01.06.filtres-fr.md">Filtres</a></li>
+</ul>
+<h3 id="introduction">Introduction</h3>
+<p>Déclaration du controller dans le module:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice&#39;).controller(&#39;TwProfileUserEditController&#39;, Controller);
+
+function Controller() {
+    ...
+}</code></pre>
+<p>Préférer une fonction nommée (plutôt qu'une fonction anonyme).</p>
+<p>Injection des services via les paramètres du contrôleur:</p>
+<pre class="js"><code>/** @ngInject */
+function Controller($scope, $logger, MyCustomService) {
+     ...
+}</code></pre>
+<p>L'annotation <span class="citation">@ngInject</span> permet à ngAnnotate de détecter ces fonctions comme des services à annoter avant la minification, pour ne pas casser l'injection.</p>
+<p>La forme transformée ressemblera à la forme descriptive comportant le nom des services:</p>
+<pre class="js"><code>function Controller([&#39;$scope&#39;, &#39;$logger&#39;, &#39;MyCustomService&#39;, 
+    function($scope, $logger, MyCustomService) {
+        // ...
+    }
+]);
+</code></pre>
+<p>Ceci peut aussi être généré par .</p>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/guide/controller">controller guide</a></li>
+<li><a href="https://github.com/olov/ng-annotate">ng-annotate</a></li>
+</ul>
+<h3 id="modèle-bindé-sur-le-scope-non-recommandé">Modèle bindé sur le scope (non-recommandé)</h3>
+<p>Bien que ce ne soit plus le pattern recommandé, il faut connaitre son existence pour comprendre les nombreux exemples qui l'utilisent sur le Web.</p>
+<p>Affectation d'un attribut dans le scope:</p>
+<pre class="js"><code>function Controller($scope) {
+
+    // public attributes
+    $scope.total = 10;
+    $scope.user = {
+        firstName: &#39;John&#39;
+    };
+}</code></pre>
+<p>Association d'une méthode au scope:</p>
+<pre class="js"><code>function Controller($scope) {
+
+    // public methods
+    $scope.openDetails = openDetails;
+    $scope.getFullName = getFullName;
+
+    function getFullName(){
+        ...
+    }
+
+    function openDetails(){
+        ...
+    }
+
+}</code></pre>
+<p>Utilisation du modèle dans le template:</p>
+<pre class="handlebars"><code>&lt;div class=&quot;body-area&quot; ng-controller=&quot;TwProfileUserEditController&quot;&gt;
+
+    &lt;div&gt;
+        &lt;label&gt;Entrez votre prénom&lt;/label&gt;
+        &lt;div&gt;
+            &lt;input type=&quot;text&quot; ng-model=&quot;user.firstName&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p ng-if=&quot;user.firstName&quot;&gt;Bonjour {{ user.firstName }}!&lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+<p>Problèmes avec contrôleurs &amp; $scope: * template fortement couplé au $scope * tests plus compliqués à réaliser * migration difficile vers un autre framework (ex: angular v2 n'a pas de $scope) * possible conflits entre les variables de contrôleurs imbriqués</p>
+<h3 id="modèle-bindé-sur-le-controlleur-controller-as-recommandé">Modèle bindé sur le controlleur: controller-as (recommandé)</h3>
+<p>La syntaxe 'controller-as' est apparu avec angular 1.2, puis a été étendue ensuite: * le &quot;viewModel&quot; est lié au contrôleur, pas au scope * la vue associe le contrôleur à une variable</p>
+<p>Affectation d'un attribut dans le scope:</p>
+<pre class="js"><code>function Controller() {
+
+    // view model
+    var vm = this;
+
+    // public attributes
+    vm.user;
+
+    ...
+    return vm;
+}</code></pre>
+<p>Association d'une méthode au scope:</p>
+<pre class="js"><code>function Controller() {
+
+    // view model
+    var vm = this;
+
+    // public methods
+    vm.getFullName = getFullName;
+    vm.reset = reset;
+
+    function getFullName() {
+        return vm.user.firstName + &#39; &#39; + vm.user.lastName;
+    }
+
+    function reset(){
+        vm.user = {
+            firstName: &#39;John&#39;,
+            lastName: &#39;Smith&#39;
+        };
+    }
+
+    ...
+    return vm;
+}</code></pre>
+<p>Utilisation du modèle dans le template:</p>
+<pre class="handlebars"><code>&lt;div class=&quot;body-area&quot; ng-controller=&quot;TwProfileUserEditController as vm&quot;&gt;
+
+    &lt;div&gt;
+        &lt;label&gt;Entrez votre prénom&lt;/label&gt;
+        &lt;div&gt;
+            &lt;input type=&quot;text&quot; ng-model=&quot;vm.user.firstName&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p ng-if=&quot;vm.getFullName()&quot;&gt;Bonjour {{ vm.getFullName() }}!&lt;/p&gt;
+
+    &lt;div&gt;&lt;input type=&quot;button&quot; value=&quot;Reset&quot; ng-click=&quot;vm.reset()&quot;&gt;&lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+<p>Exemple avec des contrôleurs imbriqués:</p>
+<pre class="handlebars"><code>
+&lt;div ng-controller=&quot;MainCtrl as main&quot;&gt;
+    {{ main.title }}
+    &lt;div ng-controller=&quot;AnotherCtrl as another&quot;&gt;
+        Scope title: {{ another.title }}
+        Parent title: {{ main.title }}
+        &lt;div ng-controller=&quot;YetAnotherCtrl as yet&quot;&gt;
+            Scope title: {{ yet.title }}
+            Parent title: {{ another.title }}
+            Parent parent title: {{ main.title }}
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>Le modèle n'est plus couplé au scope.</p>
+<p>Si besoin spécifique, on peut quand même faire appel au scope:</p>
+<pre class="js"><code>$scope.$on(&#39;$destroy&#39;, function onDestroy() {
+  // libération des resources, log, requête, message...
+});</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="http://toddmotto.com/digging-into-angulars-controller-as-syntax">digging-into-angulars-controller-as-syntax</a></li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/guide/controller">controller guide</a></li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/guide/scope">scope guide</a></li>
+</ul>
+<h3 id="contrôleur---bonnes-pratiques">Contrôleur - bonnes pratiques</h3>
+<p>Quelques conseils à suivre:</p>
+<ul>
+<li>préférer les fonctions nommées</li>
+<li>déclarer les attributs et méthodes au début du controlleur</li>
+<li>préférer la syntaxe controller-as</li>
+</ul>
+<p>Créez votre propre style-guide en vous inspirant de ceux-ci:</p>
+<ul>
+<li><a href="https://github.com/johnpapa/angular-styleguide">johnpapa angular style guide</a></li>
+<li><p><a href="https://github.com/mgechev/angularjs-style-guide">mgechev angular style guide</a> ## Les filtres</p></li>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.05.controllers-fr.md">Contrôleurs</a></li>
+<li><p>Page suivante: <a href="01.07.services-fr.md">Services</a></p></li>
+</ul>
+<h3 id="introduction-1">Introduction</h3>
+<p>Les filtres permettent de transformer une variable afin de l'afficher. Par exemple, on peut formater une devise, filtrer une collection, compter le nombre d'éléments...</p>
+<p>Formatage des devises:</p>
+<pre class="handlebars"><code>{{ vm.user.salary | currency }}</code></pre>
+<p>Formatage des dates:</p>
+<pre class="handlebars"><code>{{ vm.user.birthdate | date:&#39;yyyy-MM-dd&#39; }}</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://docs.angularjs.org/guide/filter">filter guide</a></li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/filter/currency">currency filter</a></li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/filter/date">date filter</a></li>
+</ul>
+<h2 id="tableaux-pagination-et-filtrage">Tableaux: pagination et filtrage</h2>
+<h3 id="pagination-avec-limitto">Pagination avec limitTo</h3>
+<p>Le filtre limitTo:N:i permet d'extraire &quot;N&quot; éléments d'un liste, à partir de l'index &quot;i&quot;.</p>
+<p>On peut ensuite itérer sur la collection via ng-repeat.</p>
+<p>Exemple:</p>
+<pre class="handlebars"><code>&lt;div ng-repeat=&quot;item in items | limitTo:10:30&quot;&gt;{{ item }}&lt;/div&gt;</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/filter/limitTo">limitTo filter</a></li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngRepeat">ngRepeat directive</a></li>
+</ul>
+<h3 id="filtrage-du-contenu">Filtrage du contenu</h3>
+<p>Le filtre filter:attributeName:value:strict permet de filtrer une collection en fonction de la valeur d'un attribut.</p>
+<p>Si strict vaut true, la comparaison est exacte, sinon il s'agit d'un &quot;contains&quot;.</p>
+<p>Exemple:</p>
+<pre class="handlebars"><code>&lt;div ng-repeat=&quot;item in items | filter:{name:vm.name}&quot;&gt;{{item}}&lt;/div&gt;</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/filter/filter">'filter' filter</a></li>
+</ul>
+<h3 id="tri-du-contenu">Tri du contenu</h3>
+<p>Le filtre orderBy:attributeName:reverse permet de filtrer une collection en fonction de la valeur d'un attribut.</p>
+<p>Utilisation du filtre &quot;orderBy&quot; pour trier le contenu:</p>
+<pre class="handlebars"><code>&lt;div ng-repeat=&quot;item in items | orderBy:date:true&quot;&gt;{{item}}&lt;/div&gt;</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><p>https://code.angularjs.org/1.4.7/docs/api/ng/filter/orderBy ## Les services</p></li>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.06.filtres-fr.md">Filtres</a></li>
+<li><p>Page suivante: <a href="01.08.directives-fr.md">Directives</a></p></li>
+</ul>
+<h3 id="introduction-2">Introduction</h3>
+<p>Les services sont des composants permettant d'isoler des fonctions spécifiques: * single responsability * injection de dépendances entres services, injection des services dans les contrôleurs</p>
+<p>Il y a 4 façons de déclarer un service: * angular.module('tw.practice').<strong>value()</strong> pour déclarer une constante * angular.module('tw.practice').<strong>service()</strong> pour déclarer un service via une méthode * angular.module('tw.practice').<strong>factory()</strong> pour déclarer un service via une factory * angular.module('tw.practice').<strong>provider()</strong> pour déclarer un service via un provider (configurable)</p>
+<p>Injection et utilisation dans un contrôleur:</p>
+<pre class="js"><code>function Controller(twSecurityService) {
+
+    var user = twSecurityService.login(&#39;admin&#39;, &#39;pass&#39;);
+    // ...</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://docs.angularjs.org/guide/services">angular services guide</a></li>
+<li><a href="http://www.angular-js.fr/les-services-angularjs">les services angularjs</a></li>
+<li><a href="http://stackoverflow.com/questions/14324451/angular-service-vs-angular-factory">Stack overflow: angular.service vs angular.factory</a></li>
+<li><a href="http://stackoverflow.com/questions/15666048/angularjs-service-vs-provider-vs-factory">Stack overflow: AngularJS : Service vs provider vs factory</a></li>
+<li><a href="http://blog.thoughtram.io/angular/2015/07/07/service-vs-factory-once-and-for-all.html">Service vs Factory - Once and for all</a></li>
+</ul>
+<h3 id="service-constante-.value">Service constante: .value()</h3>
+<p>La méthode .value() permet de déclarer une constante:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice&#39;).value(twApiPrefix, &#39;/api&#39;);</code></pre>
+<h3 id="service-déclaré-via-une-fonction-constructeur-.service">Service déclaré via une fonction constructeur: .service()</h3>
+<p>La méthode .service() permet de déclarer un constructeur pour notre service:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.security&#39;).service(&#39;twSecurityService&#39;, twSecurityService);
+
+function twSecurityService($log, $http) {
+
+    // private attributes
+    var currentUser = null;
+
+    // public methods
+    this.login = login;
+
+    function login(login, password) {
+        // ...
+    }
+}</code></pre>
+<p>S'agissant d'une fonction constructeur et permet une migration simple vers une classe ES6.</p>
+<h3 id="service-déclaré-via-une-fonction-factory-.factory">Service déclaré via une fonction factory: .factory()</h3>
+<p>La méthode .factory() permet de déclarer un objet représentant notre service:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.security&#39;).factory(&#39;twSecurityService&#39;, twSecurityService);
+
+function twSecurityService($log, $http) {
+
+    var service = {};
+
+    // private attributes
+    var currentUser = null;
+
+    // public methods
+    service.login = login;
+    service.logout = logout;
+    service.getCurrentUser = getCurrentUser;
+
+    function login(login, password) {
+        // ...
+        currentUser = buildSecurityUser(token)
+        return currentUser;
+    }
+    
+    // ...
+    
+    return service;
+}</code></pre>
+<p>Ecriture très proche de service(). Adopter l'un ou l'autre dans l'application, mais pas les 2.</p>
+<h3 id="service-déclaré-via-un-provider-configurable">Service déclaré via un provider (configurable)</h3>
+<p>Exemple de configuration d'un service.</p>
+<p>Déclaration du service provider:</p>
+<pre class="js"><code>var apiModule = angular.module(&quot;apiModule&quot;, []);
+
+apiModule.provider(&quot;apiService&quot;, function() {
+    var provider = {};
+    var config   = { baseUrl : &quot;/api&quot; };
+
+    provider.configureBaseUrl = function(baseUrl) {
+        config.baseUrl = baseUrl;
+    }
+
+    provider.$get = function() {
+        var service = {};
+
+        service.getResources = function(name) {
+            // TODO query the api server
+        }
+
+        return service;
+    }
+
+    return provider;
+});</code></pre>
+<p>Configuration:</p>
+<pre class="js"><code>apiModule.config( function( apiServiceProvider ) {
+    apiServiceProvider.configureBaseUrl(&quot;/restapi/v2&quot;);
+});
+</code></pre>
+<p>Utilisation</p>
+<pre class="js"><code>function(apiService) {
+    apiService.getResources(&#39;products&#39;);
+});</code></pre>
+<p>Les méthodes value(), service() et factory() sont en fait des formes simpliées de provider().</p>
+<p><em>Resources</em>:</p>
+<p><a href="http://tutorials.jenkov.com/angularjs/dependency-injection.html#configuring-a-provider">AngularJS Modularization &amp; Dependency Injection: configuring a provider</a></p>
+<h3 id="tests-unitaires-de-services">Tests unitaires de services</h3>
+<p>Description d'un test Jasmine:</p>
+<pre class="js"><code>it(&#39;medium password (8 characters) should result to strongness 5&#39;, function () {
+   var strongness = passwordService.checkStrongness(&#39;12345678&#39;);
+    expect(strongness).toEqual(5);
+});</code></pre>
+<p>Exécution automatique en mode watch (swiip):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">gulp</span> test:auto
+<span class="kw">...</span>
+<span class="kw">PhantomJS</span> 1.9.8 (Linux 0.0.0) <span class="kw">form</span> password service long password (<span class="kw">&gt;</span> 12 characters) <span class="kw">should</span> result to strongness 10 FAILED
+    <span class="kw">Expected</span> undefined to equal 10.
+        <span class="kw">at</span> /home/toub/Documents/dev/formation-angular/2015-09_rabat/angular-practice-1.4.yeoman/src/app/profile/profile.password.service.spec.js:25
+<span class="kw">PhantomJS</span> 1.9.8 (Linux 0.0.0)<span class="kw">:</span> Executed 3 of 3 (3 FAILED) <span class="kw">ERROR</span> (0.001 secs / 0.01 secs)</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/guide/unit-testing">unit-testing guide</a></li>
+<li><a href="http://karma-runner.github.io">Karma</a>: moteur d'exécution de vos tests dans le browser</li>
+<li><a href="http://jasmine.github.io/2.3/introduction.html">Jasmine</a>: descripteur de tests</li>
+<li><p><a href="https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md">tâches gulp du générateur swiip</a> ## Les directives</p></li>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.07.services-fr.md">Services</a></li>
+<li><p>Page suivante: <a href="01.09.router-fr.md">Routeur</a></p></li>
+</ul>
+<h3 id="introduction-3">Introduction</h3>
+<p>&quot;<em>At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler ($compile) to attach a specified behavior to that DOM element (e.g. via event listeners), or even to transform the DOM element and its children.</em>&quot;</p>
+<p>En résumé, des composants réutilisables permettant de modifier le contenu d'un élément et/ou son comportement.</p>
+<p><strong><em>Exemples</em></strong>: ng-model, ng-if, bs-datepicker...</p>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/guide/directive">angular directive guide</a></li>
+</ul>
+<h3 id="directives-standard">Directives standard</h3>
+<p>Quelques directives standard utilisables dans les templates:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngIf">ng-if</a>: création d'un élément dans le DOM</li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngSwitch">ng-switch</a>: ng-if version switch/case</li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngShow">ng-show</a>/<a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngHide">ng-hide</a>: affichage/masquage d'un élément du DOM</li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngClick">ng-click</a>: exécute une expression suite à un click</li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngChange">ng-change</a>: exécute une expression suite à un changement dans un champs de formulaire</li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngModel">ng-model</a>: association d'un attribut du modèle au champ input</li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngClass">ng-class</a>: assignation d'une ou plusieurs classes à un élément</li>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngRepeat">ng-repeat</a>: parcours d'une collection</li>
+</ul>
+<p>Ressources : * <a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive">liste des directives standard</a></p>
+<h3 id="directives-déclaration">Directives: déclaration</h3>
+<p>Déclaration avec controllerAs:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice.form&#39;).directive(&#39;someDirective&#39;, function() {
+    return {
+        templateUrl: &#39;app/some.directive.html&#39;,
+        controllerAs: &#39;vm&#39;,
+        scope: {
+            param: &#39;=&#39;,
+            callback: &#39;&amp;amp;&#39;,
+            value: &#39;@&#39;
+        },
+        bindToController: true,
+        controller: SomeDirectiveController
+    };
+}</code></pre>
+<p>Utilisation:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;div</span><span class="ot"> some-directive param=</span><span class="st">&quot;vm.name&quot;</span><span class="ot"> callbackmethod=</span><span class="st">&quot;vm.doIt&quot;</span><span class="ot"> value=</span><span class="st">&quot;5&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="http://royto.familleroy.fr/2015/06/10/angular-directive-avec-controller-as-bindtocontroller-et-tests/">Directive avec controller as, bindToController et tests</a></li>
+</ul>
+<h3 id="directives-transclusion">Directives: transclusion</h3>
+<p>Permet d'insérer du code à l'intérieur du template de la directive.</p>
+<p>Activation via l'attribut &quot;transclude&quot;:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice&#39;, []).directive(&#39;pane&#39;, pane);
+
+function pane(){
+
+    return {
+            templateUrl: &#39;app/pane/pane.directive.html&#39;,
+            controllerAs: &#39;vm&#39;,
+            scope: {
+                form: &#39;=&#39;,
+                attributeName: &#39;@&#39;
+            },
+            bindToController: true,
+            controller: PaneController,
+            transclude: true
+        };
+}</code></pre>
+<p>Puis dans le template de la directive (ici, &quot;pane.directive.html&quot;), à l'endroit souhaité:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;span</span><span class="ot"> ng-transclude</span><span class="kw">&gt;&lt;/span&gt;</span></code></pre>
+<p>Enfin, utilisation de la directive</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="er">&lt;</span>pane title=&quot;{{title}}&quot;&gt;Le texte qui doit être inclu dans le &quot;pane&quot;<span class="kw">&lt;/pane&gt;</span></code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/directive/ngTransclude">ngTransclude</a></li>
+</ul>
+<h3 id="directives-tests">Directives: tests</h3>
+<p>Se reporter à l'exemple tw-robustness-bar.directive.spec.js.</p>
+<p>Chargement des modules à tester, ainsi que des templates compilés en JS (via ngHtml2JsPreprocessor):</p>
+<pre class="js"><code>// load module containing the directive
+beforeEach(module(&#39;tw.practice.form&#39;));
+
+// load templates
+beforeEach(module(&#39;ngHtml2JsPreprocessor&#39;));</code></pre>
+<p>Création d'un nouveau scope avant chaque test:</p>
+<pre class="js"><code>beforeEach(inject(function (_$compile_, _$rootScope_, _$log_) {
+    $compile = _$compile_;
+    $rootScope = _$rootScope_;
+    $scope = _$rootScope_.$new();
+    $log = _$log_;
+}));</code></pre>
+<p>Puis description du test:</p>
+<pre class="js"><code>it(&#39;tw-robustness-bar strong&#39;, function () {
+
+    // compile the template
+    var element = angular.element(&quot;&lt;div tw-robustness-bar password=\&quot;passModel\&quot;&gt;&lt;/div&gt;&quot;);
+    var template = $compile(element)($scope);
+
+    // update root scope with strong password
+    $scope.passModel = &#39;Robu5tP@ssw0rd&#39;;
+    // run a $digest cycle to update your template with new data
+    $rootScope.$digest();
+    // check the progressbar to contain progress-bar-success class
+    expect(template.find(&#39;div&#39;).html().trim()).toContain(&#39;progress-bar-success&#39;);
+
+});</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://docs.angularjs.org/guide/unit-testing">unit-testing guide</a></li>
+<li><a href="http://royto.familleroy.fr/2015/06/10/angular-directive-avec-controller-as-bindtocontroller-et-tests/">Directive avec controller as, bindToController et tests</a></li>
+</ul>
+<h2 id="routeur">Routeur</h2>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.08.directives-fr.md">Directives</a></li>
+<li>Page suivante: <a href="01.10.forms-fr.md">Formulaires</a></li>
+</ul>
+<h3 id="routeurs-disponibles">Routeurs disponibles</h3>
+<p>Plusieurs s'options existent:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ngRoute">ngRoute</a>: le routeur d'angular v1.x (&lt; 1.5)</li>
+<li><a href="https://github.com/angular-ui/ui-router">ui-router</a>: le routeur d'angular-ui</li>
+<li><a href="https://github.com/angular/router">angular router</a>: futur routeur pour angular v1.5 et v2.x</li>
+</ul>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/21023763/difference-between-angular-route-and-angular-ui-router">difference between angular route and angular-ui router</a></li>
+</ul>
+<h3 id="ui-router---installation">ui-router - installation</h3>
+<p>Chargement du module:</p>
+<pre class="js"><code>angular.module(&#39;tw.practice&#39;, [..., &#39;ui.router&#39;]);</code></pre>
+<p>Chargement de la directive (index.html):</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;main-area&quot;</span><span class="ot"> ui-view</span><span class="kw">&gt;&lt;/div&gt;</span></code></pre>
+<p>Configuration du routeur (app.js):</p>
+<pre class="js"><code>$stateProvider.state(&#39;edit-user&#39;, {
+    url: &quot;/profile/user/edit&quot;,
+    templateUrl: &#39;profile/profile.user-edit.html&#39;,
+    controller: &#39;TwProfileUserEditController&#39;
+});
+$urlRouterProvider.otherwise(&#39;/profile/user/edit&#39;);</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://github.com/angular-ui/ui-router">ui-router</a></li>
+</ul>
+<h3 id="ui-router---redirection">ui-router - redirection</h3>
+<pre class="js"><code>$state.go(&#39;edit-user&#39;, {
+    userId: user._id
+});</code></pre>
+<p><em>Resources</em>:</p>
+<p><a href="http://angular-ui.github.io/ui-router/site/#/api/ui.router.state.$state">$state.go</a></p>
+<h3 id="ui-router---paramètres-url">ui-router - paramètres URL</h3>
+<p>Exemple:</p>
+<pre class="js"><code>.state(&#39;edit-user&#39;, {
+        url: &quot;/edit-user/:userId&quot;,
+        templateUrl: &#39;app/profile/profile.user-edit.html&#39;,
+        controller: &#39;TwProfileUserEditController&#39;,
+        controllerAs: &#39;vm&#39;
+    })</code></pre>
+<p><em>Resources</em>:</p>
+<ul>
+<li><a href="https://github.com/angular-ui/ui-router/wiki/URL-Routing">ui-router URL-Routing &amp; $stateParams</a></li>
+<li><a href="http://stackoverflow.com/questions/25647454/how-to-pass-parameters-using-ui-sref-in-ui-router-to-controller">how to pass parameters using ui-sref in ui-router to controller</a></li>
+</ul>
+<h3 id="ui-router---mode-html5">ui-router - mode html5</h3>
+<p>Définir la balise &quot;base&quot; dans index.html:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;base</span><span class="ot"> href=</span><span class="st">&quot;/&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>Activation du mode html5 (app.js):</p>
+<pre class="js"><code>$locationProvider.html5Mode(true);</code></pre>
+<p>Configuration du serveur pour rediriger les urls de fallback:</p>
+<p>Pour apache, nginx, azure IIS, express, asp.net: <a href="https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#how-to-configure-your-server-to-work-with-html5mode">ui-router: how to configure your server to work with html5Mode</a></p>
+<p>Pour gulp connect:</p>
+<pre class="js"><code>gulp.task(&#39;connect&#39;, function() {
+  connect.server({
+    port: 3000,
+    root: &#39;app&#39;,
+    livereload: true,
+      fallback: &#39;./app/index.html&#39;
+  });
+});</code></pre>
+<p>Pour browser sync:</p>
+<pre class="js"><code>browserSync.use(browserSyncSpa({
+    selector: &#39;[ng-app]&#39; // Only needed for angular apps
+}));</code></pre>
+<h2 id="les-formulaires">Les formulaires</h2>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.09.router-fr.md">Routeur</a></li>
+<li>Page suivante: <a href="01.11.rest-api-fr.md">API REST</a></li>
+</ul>
+<h3 id="principes-de-base">Principes de base</h3>
+<p>On associe au formulaire un objet spécial du modèle, puis chaque champ à un autre attribut du modèle:</p>
+<pre class="handlebars"><code>&lt;form name=&quot;userForm&quot; novalidate&gt;
+    &lt;div class=&quot;form-group required&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;First name&lt;/label&gt;
+        &lt;input name=&quot;firstName&quot; class=&quot;form-control&quot; type=&quot;text&quot;
+            ng-model=&quot;vm.user.firstName&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<p>A noter:</p>
+<ul>
+<li>form name=: l'objet contenant le contrôleur du formulaire</li>
+<li>attribut novalidate pour désactiver la validation html5</li>
+<li>ng-model permet de binder le champ à l'attribut correspondant du modèle</li>
+</ul>
+<p>Il est possible d'ajouter automatiquement une étoile rouge sur les champs requis, en CSS:</p>
+<pre class="sourceCode css"><code class="sourceCode css"><span class="fl">.form-group.required</span> <span class="fl">.control-label</span><span class="dv">:after</span> <span class="kw">{</span>
+    <span class="kw">content:</span> <span class="st">&quot;*&quot;</span><span class="kw">;</span>
+    <span class="kw">color:</span> <span class="dt">red</span><span class="kw">;</span>
+    <span class="kw">margin-left:</span> <span class="dt">3px</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre>
+<p>Se reporter au TP pour les exemples complets.</p>
+<h3 id="validation">Validation</h3>
+<h3 id="validation---ng-messages">Validation - ng-messages</h3>
+<p>Directive ng-messages pour afficher les messages d'erreur (ajoutée en angular 1.3, améliorée ensuite):</p>
+<pre class="handlebars"><code>&lt;div ng-messages=&quot;userForm[firstName].$error&quot; &gt;
+    &lt;div class=&quot;error&quot; ng-message=&quot;required&quot;&gt;Field is required.&lt;/div&gt;
+    &lt;div class=&quot;error&quot; ng-message=&quot;minlength&quot;&gt;Too short.&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p><em>Resources</em>: * <a href="https://code.angularjs.org/1.4.7/docs/api/ngMessages/directive/ngMessages">directive ngMessages</a> * <a href="http://blog.thoughtram.io/angularjs/2015/01/23/exploring-angular-1.3-ngMessages.html">exploring angular 1.3 ngMessage</a></p>
+<h4 id="validation---required">Validation - required</h4>
+<p>L'attribut required active la contrainte de champ obligatoires:</p>
+<pre class="handlebars"><code>&lt;input name=&quot;firstName&quot; ng-model=&quot;vm.user.firstName&quot; required&gt;</code></pre>
+<h4 id="validation---minlengthmaxlength">Validation - minlength/maxlength</h4>
+<p>La présence de minlength/maxlength active les contraintes de taille min/max:</p>
+<pre class="handlebars"><code>&lt;input name=&quot;firstName&quot; ng-model=&quot;vm.user.firstName&quot; ng-minlength=&quot;2&quot; ng-maxlength=&quot;10&quot;&gt;</code></pre>
+<h4 id="validation---email">Validation - email</h4>
+<p>Le type &quot;email&quot; active la validation du format de l'email:</p>
+<pre class="handlebars"><code>&lt;input name=&quot;email&quot; type=&quot;email&quot; ng-model=&quot;vm.user.email&quot;&gt;</code></pre>
+<h4 id="validation---number">Validation - number</h4>
+<p>Le type &quot;number&quot; active la validation du format nombre:</p>
+<pre class="handlebars"><code>&lt;input name=&quot;salary&quot; ng-model=&quot;vm.user.salary&quot; type=&quot;number&quot;&gt;</code></pre>
+<h4 id="validation---password-match">Validation - password match</h4>
+<p>La validation de 2 champs identiques peut se faire via la directive validation-match: <code>handlebars &lt;input name=&quot;password&quot; type=&quot;password&quot; ng-model=&quot;vm.user.password&quot;&gt; &lt;input name=&quot;passwordConfirmation&quot; type=&quot;password&quot; ng-model=&quot;vm.user.passwordConfirmation&quot; match=&quot;vm.user.password&quot;&gt;</code><br /><em>Resources</em>:</p>
+<ul>
+<li><a href="https://github.com/TheSharpieOne/angular-validation-match">angular-validation-match</a></li>
+</ul>
+<h3 id="gestion-fine-de-létat-du-formulaire">Gestion fine de l'état du formulaire</h3>
+<p>Il est possible de contrôler plus finement quand le message est affiché via les propriétés $touched et <span class="math">$submitted: ``` handlebars ng-if=&quot;userForm.firstName.$</span>touched || userForm.<span class="math">$submitted&quot; ``` Et de modifier l'état du formulaire quand on clique sur les actions: ``` handlebars &lt;a ng-click=&quot;userForm.$</span>setSubmitted()&quot;&gt;Save</a> <a ng-click="userVm.reset();userForm.$setPristine();userForm.$setUntouched();">Reset</a> <code>On peut tester dans le code si le formulaire est valide:</code> js<br /> if (form.$valid) ... ```<br /><em>Resources</em>:</p>
+<ul>
+<li><a href="https://code.angularjs.org/1.4.7/docs/api/ng/type/form.FormController">form.FormController</a></li>
+<li><a href="http://stackoverflow.com/questions/25025102/angular-difference-between-pristine-dirty-and-touched-untouched">angular difference between pristine/dirty and touched/untouched</a></li>
+</ul>
+<h3 id="date-picker"> Date picker</h3>
+<p>Champ date avec directive bs-datepicker de angular-strap: <code>handlebars  &lt;label class=&quot;control-label&quot;&gt;Birthdate&lt;/label&gt; &lt;input name=&quot;birthdate&quot; class=&quot;form-control&quot; type=&quot;text&quot;      ng-model=&quot;vm.user.birthdate&quot; bs-datepicker data-date-format=&quot;yyyy-MM-dd&quot;      data-max-date=&quot;today&quot; data-autoclose=&quot;1&quot; data-date-type=&quot;iso&quot;&gt;</code><br />Alternatives:</p>
+<ul>
+<li>input[type=&quot;date&quot;] natif pour les navigateurs récents</li>
+<li>angular-boostrap</li>
+</ul>
+<p><em>Resources</em>:</p>
+<ul>
+<li><p>http://mgcrea.github.io/angular-strap/#/datepickers ## Rest API</p></li>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.10.forms-fr.md">Formulaires</a></li>
+<li><p>Page suivante: <a href="01.12.data.http-fr.md">Service $http</a></p></li>
+</ul>
+<h3 id="introduction-4">Introduction</h3>
+<p>REpresentational State Transfer (REST) propose de considérer que toutes les données sont des ressources auxquelles on accède via des URL uniques.</p>
+<p>REST est composé de plusieurs éléments, décomposés en niveaux par Léonard Richardson: * niveau 1: accés aux données par ressources /users, /products... * niveau 2: utilisation des verbes HTTP (GET, POST, PATCH...) et codes de retour HTTP (200, 201, 403...) * niveau 3: enrichi les resources avec les liens associés aux ressources (contrôles hypermédia)</p>
+<p>Exemple classique d'une API REST niveau 2 pour la resource &quot;user&quot;:</p>
+<ul>
+<li><strong>GET /users?max=100</strong>: retourne tous des utilisateurs (maximum 100 résultats)</li>
+<li><strong>GET /users?group=admin</strong>: retourne tous des utilisateurs appartenent au groupe &quot;admin&quot;</li>
+<li><strong>GET /users/:id</strong>: retourne un utilisateur à partir de son id</li>
+<li><strong>POST /users</strong>: créé un nouvel utilisateur</li>
+<li><strong>DELETE /entities/:id</strong>: supprime un utilisateur à partir de son id</li>
+<li><strong>PUT /users/:id {body}</strong>: mise à jour complète d'un utilisateur à partir de son id</li>
+<li><strong>PATCH /users/:id {body}</strong>: mise à jour partielle d'un utilisateur à partir de son id</li>
+</ul>
+<p>La documentation de l'API doit être précise, afin d'indiquer quels attributs possède la ressource, quelle est la réponse du serveur, et quelles sont les paramètres obligatoires et facultatifs pour chaque requête.</p>
+<p>Resources: * <a href="https://fr.wikipedia.org/wiki/Representational_State_Transfer">REpresentational State Transfer sur Wikipedia</a> * <a href="http://blog.xebia.fr/2010/06/25/rest-richardson-maturity-model/">REST : Richardson Maturity Model par Xebia</a></p>
+<h3 id="standardisation-documentation-outils">Standardisation, documentation, outils</h3>
+<p>Différents projets proposent de décrire de façon standardisée une API afin de permettre de gérérer une documentation compréhensible par les humains comme par les machines.</p>
+<p>Ces projets proposent, selon les cas: * une spécification permettant de représenter l'API dans un format standard * des outils pour éditer ou générer ce format à partir de code ou de modèle * des outils pour générer le code client ou serveur de l'API * des outils pour tester la documentation * des outils pour monitorer l'utilisation de l'API</p>
+<p>Testez vos API avec <a href="https://www.getpostman.com/">postman</a>.</p>
+<p>Les principaux projets sont:: * <a href="https://github.com/swagger-api">Swagger</a> * <a href="https://github.com/apiaryio/api-blueprint">API Blueprint</a> * <a href="https://github.com/raml-org/raml-spec">RAML</a></p>
+<p><em>Resources</em>: * <a href="http://apihandyman.io/the-data-the-hypermedia-and-the-documentation/">The data, the hypermedia and the documentation</a> * <a href="https://blog.risingstack.com/swagger-nodejs/">Swagger for Node.js HTTP API Design</a> * <a href="https://strongloop.com/get-started/">Strongloop Swagger compatible LoopBack framework</a> * <a href="https://www.getpostman.com/docs/jetpacks_writing_tests">Writing tests with postman</a></p>
+<h2 id="service-http">Service $http</h2>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.11.rest-api-fr.md">API REST</a></li>
+<li>Page suivante: <a href="01.13.data.ng-resource-fr.md">Service ng-resource</a></li>
+</ul>
+<blockquote>
+<p>The $http service is a core Angular service that facilitates communication with the remote HTTP servers via the browser's XMLHttpRequest object or via JSONP.</p>
+</blockquote>
+<p>Ce service permet d'effectuer des requêtes HTTP (ajax) vers un serveur. Il ne prend pas en compte les spécificités d'une API REST.</p>
+<h3 id="exemples">Exemples</h3>
+<p>Récupération de la liste des utilisateurs:</p>
+<p><code>js  $http.get('/users?max=100').then(function successCallback(response) {     // success     var users = response.data; }, function errorCallback(response) {     // error });</code></p>
+<p>Création d'un utilisateur:</p>
+<p><code>js  $http.post('/users', {name: 'John', age: 30}).then(function successCallback(response) {     // success     var user = response.data; }, function errorCallback(response) {     // error });</code></p>
+<p><em>Resources:</em>: * <a href="https://docs.angularjs.org/api/ng/service/$http">$http documentation</a></p>
+<h2 id="service-resource">Service $resource</h2>
+<ul>
+<li>Sommaire: <a href="01.00.angular-bases.documentation-fr.md">Démarrer avec Angular 1.4</a></li>
+<li>Page précédente: <a href="01.12.data.http-fr.md">Service $http</a></li>
+</ul>
+<blockquote>
+<p>A factory which creates a resource object that lets you interact with RESTful server-side data sources.</p>
+</blockquote>
+<p>Service dédié à la communication avec une API REST (basé sur $http).</p>
+<h3 id="exemples-1">Exemples</h3>
+<p>Configuration de la resource:</p>
+<p><code>js  var User = $resource('/users/:userId', {userId:'@id'});</code></p>
+<p>On indique ici que le paramètre &quot;userId&quot; dans l'URL correspond à l'attribut &quot;id&quot; de la ressource.</p>
+<p>Récupération de la liste des utilisateurs:</p>
+<p><code>js  var user = User.query({group='admin'}, function(user) {     // success }, function(err) {     // error });</code> Récupération et modification d'un utilisateur:</p>
+<p><code>js  var user = User.get({userId:15}, function(user) {     // success     user.name = 'Peter';     user.$save(function(user){         // success     }, function(err) {         // error     }); }, function(err) {     // error });</code></p>
+<p>Création d'un utilisateur:</p>
+<p><code>js  var newUser = new User({name: 'John', age:'10'});     newUser.$save(function(user){         // success     }, function(err) {         // error });</code></p>
+<p><em>Resources</em>:</p>
+<ul>
+<li>https://code.angularjs.org/1.4.7/docs/api/ngResource</li>
+<li>https://code.angularjs.org/1.4.7/docs/api/ngResource/service/$resource</li>
+<li><a href="http://fdietz.github.io/recipes-with-angular-js/consuming-external-services/consuming-restful-apis.html">Consuming restful apis</a></li>
+<li>http://stackoverflow.com/questions/20584367/how-to-handle-resource-service-errors-in-angularjs</li>
+</ul>
+</body>
+</html>
