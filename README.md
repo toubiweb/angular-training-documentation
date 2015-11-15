@@ -19,10 +19,10 @@ Autres ressources:
 
 L'export PDF de la documentation peut être téléchargée depuis le dossier /pdf:
 
-* [01.angular-bases.documentation.pdf](raw/master/pdf/01.angular-bases.documentation.pdf)
-* [02.angular-intermediate.documentation.pdf](raw/master/pdf/02.angular-intermediate.documentation.pdf)
-* [00.dev-tools.documentation.pdf](raw/master/pdf/00.dev-tools.documentation.pdf)
-* [00.3rdparty-libraries.documentation.pdf](raw/master/pdf/00.3rdparty-libraries.documentation.pdf)
+* [01.angular-bases.documentation.pdf](../../raw/master/pdf/01.angular-bases.documentation.pdf)
+* [02.angular-intermediate.documentation.pdf](../../raw/master/pdf/02.angular-intermediate.documentation.pdf)
+* [00.dev-tools.documentation.pdf](../../raw/master/pdf/00.dev-tools.documentation.pdf)
+* [00.3rdparty-libraries.documentation.pdf](../../raw/master/pdf/00.3rdparty-libraries.documentation.pdf)
 
 ## Auteur
 
