@@ -1,37 +1,17 @@
-# Angular 1.4 training documentation
+# Angular 1.4
 
-## About
+## Documentation support de formation
 
-This repository contains the documentation provided to students during angular training sessions.
+Ce dépot contient des supports de formation accompagnant des formations AngularJS. Ils doivent être accompagnée d'une présentation et de commentaires de la part d'un encadrant.
 
-### Limitation
+## Ressources
 
-This stuff is currently only available in french. Feel free to contribute to translations.
+Ressources Angular: 
+* [Niveau débutant](01.angular-bases.documentation/01.00.angular-bases.documentation-fr.md): démarrer avec Angular 1.4 (templates, controleurs, directives, routeur...)
+* [Niveau intermédiaire](02.angular-intermediate.documentation/02.00.angular-intermediate.documentation-fr.md): aller plus loin avec Angular 1.4 (json patch, cache, local forage, web sockets, sécurité JWT, data-viz, web-mapping)
 
-### Disclaimer
+Autres ressources:
 
-The author do not guaranty the quality of the information: use it at your own risk.
-
-Feel free to submit bugs and pull request. 
-
-## A propos
-
-Ce dépot contient la documentation fournie aux étudiants pendant des sessions de formation angular.
-
-### Dégagement de responsabilité
-
-L'auteur ne garantie pas la qualité des informations: utilisez-les à vos propres risques.
-
-N'hésitez pas à soumettre des bugs et contributions.
-
-## Glossaire
-
-### Résumés & ressources
-
-Ces documents contiennent les résumés des sujets abordés durant les formations, ainsi que des liens vers des resources utiles.
-
-* [Niveau débutant: démarrer avec Angular 1.4](01.angular-bases.documentation/01.00.angular-bases.documentation-fr.md): templates, controleurs, directives, routeur...
-* [Niveau intermédiaire: aller plus loin avec Angular 1.4](02.angular-intermediate.documentation/02.00.angular-intermediate.documentation-fr.md): gestion avancée des données (json patch, cache, local forage), web sockets, sécurité, data-visualization, web-mapping
 * [Librairies externes](00.3rdparty-libraries.documentation/00.3rdparty-libraries.documentation-fr.md): moment.js, bootstrap...
 * [Outils de développement](00.dev-tools.documentation/00.dev-tools.documentation-fr.md): npm, bower, gulp, yeoman...
 
@@ -43,4 +23,14 @@ Formateur angular freelance, mobile en France et à l'international. N'hésitez 
 
 ## License
 
-L'ensemble de la documentation est fournie sous license [Creative Commons Attribution 4.0 International (CC BY 4.0)](http://creativecommons.org/licenses/by/4.0/).
+[![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/).
+
+L'ensemble de la documentation est fournie sous license [Public Domain [CC0]](http://creativecommons.org/publicdomain/zero/1.0/).
+
+To the extent possible under law, <span resource="[_:publisher]" rel="dct:publisher"><span property="dct:title">Nicolas Toublanc</span></span> has waived all copyright and related or neighboring rights to this work. This work is published from <span property="vcard:Country" datatype="dct:ISO3166" content="FR" about="[_:publisher]">France</span>.
+
+## Dégagement de responsabilité
+
+L'auteur ne garantie pas la qualité des informations: utilisez-les à vos propres risques.
+
+N'hésitez pas à soumettre des bugs et contributions.
