@@ -17,7 +17,12 @@ Autres ressources:
 
 ## Téléchargement en PDF
 
-L'export PDF de la documentation peut être téléchargée depuis le dossier /pdf.
+L'export PDF de la documentation peut être téléchargée depuis le dossier /pdf:
+
+* [01.angular-bases.documentation.pdf](pdf/01.angular-bases.documentation.pdf)
+* [02.angular-intermediate.documentation.pdf](pdf/02.angular-intermediate.documentation.pdf)
+* [00.dev-tools.documentation.pdf](pdf/00.dev-tools.documentation.pdf)
+* [00.3rdparty-libraries.documentation.pdf](pdf/00.3rdparty-libraries.documentation.pdf)
 
 ## Auteur
 
