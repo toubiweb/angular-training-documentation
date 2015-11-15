@@ -7,7 +7,7 @@ Ce dépot contient des supports de formation accompagnant des formations Angular
 ## Ressources
 
 Ressources Angular: 
-* [Niveau débutant](01.angular-bases.documentation/01.00.angular-bases.documentation-fr.md): démarrer avec Angular 1.4 (templates, controleurs, directives, routeur...)
+* [Niveau débutant](./01.angular-bases.documentation/01.00.angular-bases.documentation-fr.md): démarrer avec Angular 1.4 (templates, controleurs, directives, routeur...)
 * [Niveau intermédiaire](02.angular-intermediate.documentation/02.00.angular-intermediate.documentation-fr.md): aller plus loin avec Angular 1.4 (json patch, cache, local forage, web sockets, sécurité JWT, data-viz, web-mapping)
 
 Autres ressources:
@@ -34,3 +34,17 @@ To the extent possible under law, <span resource="[_:publisher]" rel="dct:publis
 L'auteur ne garantie pas la qualité des informations: utilisez-les à vos propres risques.
 
 N'hésitez pas à soumettre des bugs et contributions.
+
+## Conversion en PDF
+
+Pour convertir la documentation en PDF, il est possible d'utiliser pandoc.
+
+Limitation: les liens relatifs seront cassés.
+
+### Installation sous Debian Linux
+
+    apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetext
+
+### Exportation en PDF
+
+    ./export-pdf.sh
