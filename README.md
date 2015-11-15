@@ -15,6 +15,10 @@ Autres ressources:
 * [Librairies externes](00.3rdparty-libraries.documentation/00.3rdparty-libraries.documentation-fr.md): moment.js, bootstrap...
 * [Outils de développement](00.dev-tools.documentation/00.dev-tools.documentation-fr.md): npm, bower, gulp, yeoman...
 
+## Téléchargement en PDF
+
+L'export PDF de la documentation peut être téléchargée depuis le dossier /pdf.
+
 ## Auteur
 
 Nicolas TOUBLANC - [@toubiweb](https://twitter.com/Toubiweb)
@@ -35,7 +39,7 @@ L'auteur ne garantie pas la qualité des informations: utilisez-les à vos propr
 
 N'hésitez pas à soumettre des bugs et contributions.
 
-## Conversion en PDF
+## Conversion en PDF depuis les sources
 
 Pour convertir la documentation en PDF, il est possible d'utiliser pandoc.
 
